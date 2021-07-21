@@ -14,7 +14,7 @@ import { Variableglobal } from './variableglobal';
 export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/inicio-mapa', icon: 'mail' },
-    { title: 'Mis Reportes', url: '/mis-reportes', icon: 'paper-plane' },
+    {title: 'Reportes', url: '/reportes-ayuntamientos', icon: 'paper-plane'},
     { title: 'Mis Puntos', url: '/mis-puntos', icon: 'cash' },
     { title: 'Informate', url: '/informate', icon: 'book' },
     { title: 'Acerca de', url: '/sobre-nosotros', icon: 'reader' },

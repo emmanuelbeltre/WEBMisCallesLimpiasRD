@@ -14,6 +14,11 @@ export class MisreportesService {
     return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadoDeReportes?cod_usuario='+cod_usuario+"");
   }
 
+  obtenerMisReportesEmpresas(){
+    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
+  }
+
+
 //   return this.http.get('https://localhost:44371/api/MisCallesLimpiasRD/ConsultarListadoDeReportes/'+cod_usuario+"");
 // }
 
@@ -23,6 +28,10 @@ obtenerFoto(cod_reporte:number){
 
 //   return this.http.get('https://localhost:44371/api/MisCallesLimpiasRD/obtenerFoto/'+cod_reporte+"");
 // }
+
+  eliminarReporte(cod_reporte:any){
+    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/EliminarReporte?cod_reporte='+cod_reporte+"");
+  }
 
 
 

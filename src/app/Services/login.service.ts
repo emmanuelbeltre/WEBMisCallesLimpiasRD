@@ -15,8 +15,12 @@ export class LoginService {
   }
 
   IniciarSesion(usuario:string,clave:string){
-      return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/miscalleslimpiasrd/iniciarsesion?usuario="+usuario+"&clave="+clave+"")
+    return this.http.get("http://localhost:53059/api/MisCallesLimpiasRD/IniciarSesionEmpresas?usuario="+usuario+"&clave="+clave+"")
   }
+
+  IniciarSesionEmpresas(usuario:string,clave:string){
+    return this.http.get("http://localhost:53059/api/MisCallesLimpiasRD/IniciarSesionEmpresas?usuario="+usuario+"&clave="+clave+"")
+}
 
   
 

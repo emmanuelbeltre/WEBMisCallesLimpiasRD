@@ -41,10 +41,7 @@ const routes: Routes = [
     loadChildren: () => import('./mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
   },
 
-  {
-    path: 'mis-reportes',
-    loadChildren: () => import('./mis-reportes/mis-reportes.module').then( m => m.MisReportesPageModule)
-  },
+
   {
     path: 'recibos-bonos',
     loadChildren: () => import('./recibos-bonos/recibos-bonos.module').then( m => m.RecibosBonosPageModule)
