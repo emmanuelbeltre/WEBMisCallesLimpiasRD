@@ -22,6 +22,10 @@
             Código
         </ion-label>
     </ion-item>
+    <ion-button id="{{'cargar'}}" color="success" (click)="cargarReportes();">
+        <ion-icon name="wallet" slot="start"></ion-icon>
+        Procesar
+    </ion-button>
     <ion-list class="reportes" *ngFor="let reporte of reportes; let i = index">
 
         <ion-item button detail="false">
@@ -53,6 +57,7 @@
                 </ion-button>
             </div>
         </ion-item>
+
     </ion-list>
 
 

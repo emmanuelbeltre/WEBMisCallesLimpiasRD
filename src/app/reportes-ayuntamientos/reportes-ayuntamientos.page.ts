@@ -69,29 +69,42 @@ CancelarDb(){
 
   cancelarReporte(i){
     
-  let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
-
+  // let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
+  //Obtenemos el id del código de reportes de forma dinámica
   this.cod_reporte = ((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
 
+  //obtenemos el id de la unicación de forma dinámica
   this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
 
-    console.log(this.ubicacion);
-  console.log(botonId);
-   console.log(this.cod_reporte);
 
    if (confirm('¿Está seguro que desea cancelar el reporte número :'+ this.cod_reporte + ',  y con la ubicación de :' + this.ubicacion)){
     this.servicio.eliminarReporte(this.cod_reporte).subscribe((data)=>
     {this.reportes = data;},
       (error)=>{console.log(error);}
     )
+
+ 
+
+     this.cargarReportes();
    }
 
+
+
+
    else {
-     alert('pues no :v');
+     alert('Proceso Detenido');
    }
   
 
 
+  }
+
+
+  cargarReportes(){
+    this.servicio.obtenerMisReportesEmpresas().subscribe((data)=>
+    {this.reportes = data;},
+      (error)=>{console.log(error);}
+    )
   }
 
 
