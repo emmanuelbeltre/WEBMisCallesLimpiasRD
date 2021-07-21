@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start" auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content >
+   
+      <div class="card">
+          <div class="header">
+              <div class="avatar">
+                  <img src="../../assets/imagenes/Marcos.jpeg" alt="">
+              </div>
+          </div>
+  
+  
+          <div class="card-body">
+              <div class="user-meta ion-text-center" style="margin-bottom: 10px; ">
+                  <label id="lbl_usuario"><strong>{{nombre_usuario}}</strong></label>
+                  <!-- <label id="lbl_usuario2"><strong>{{cod_usuario}}</strong></label> -->
+
+                  <!-- <ion-label id="lbl_usuario"></ion-label><br> -->
+              </div>
+              <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Correo</ion-label>
+              <ion-input [(ngModel)]="txt_correo_Usuario" placeholder="Correo"></ion-input>
+              <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">Telefono</ion-label>
+              <ion-input [(ngModel)]="txt_Telefono_Usuario" placeholder="Telefono"></ion-input>
+              <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cedula</ion-label>
+              <ion-input [(ngModel)]="txt_Cedula_Usuario" placeholder="Cedula"></ion-input>
+              <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Contraseña</ion-label>
+              <ion-item>
+                  <ion-input [(ngModel)]="txt_contrasena" [type]="getType()" placeholder="Contraseña"></ion-input>
+                  <ion-icon style="align-items: flex-end;" name="eye" (click)="toggleTextPassword()"></ion-icon>
+              </ion-item>
+          
+              
+  
+              <!-- <ion-chip>
+              <ion-label>2</ion-label>
+            </ion-chip> -->
+            <!-- <ion-input  readonly [(ngModel)]="txt_Telefono_Usuario" placeholder="Telefono"></ion-input> -->
+  
+            <ion-button expand="full" (click)="OnGuardarPerfil()" color="secondary">Guardar</ion-button>
+              <!-- <ion-button expand="full" color="primary">Editar Perfil</ion-button> -->
+              <!-- <ion-button expand="full" style="visibility: hidden;" color="secondary">View profile at ATP</ion-button> -->
+  
+          </div>
+      </div>
+</ion-content>

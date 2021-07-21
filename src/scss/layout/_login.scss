@@ -1,0 +1,52 @@
+ .contenedor{
+display: flex;
+justify-content: center;
+align-items: center;
+
+.login--inputs{  
+        @include desktop{
+            display: flex;
+            flex-direction: column;
+            max-width: 75%;
+            margin-left: 12%;
+    } 
+}
+  
+     .login--contraseña{
+       margin:auto;
+        padding-top: 4rem;
+        margin-right: -1rem; 
+         width:75%;
+
+         @include desktop{
+             width: 100%;
+             margin: auto;
+             display: flex;
+             justify-content: center;
+         }
+          ion-label{
+            font-weight: $bold;
+            max-width: 100%;
+
+            a{
+                color: $marron;
+            }
+          }
+     }
+
+     .boton-login{
+        margin:auto; 
+        width:100%; 
+        padding-top: 2rem;
+        display: flex;
+        justify-content: center;
+
+
+        ion-button{
+            width: 100%;
+            @include desktop{
+               width: 65%;
+            }
+        }
+     }
+ }

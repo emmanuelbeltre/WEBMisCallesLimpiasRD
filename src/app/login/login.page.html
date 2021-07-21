@@ -1,0 +1,41 @@
+<ion-content>
+
+  <ion-card-header>
+    <ion-card-title></ion-card-title>
+  </ion-card-header>
+  <div class="contenedor">
+  <ion-card-content style="width: 100%; padding: 10px;">
+    <div>
+      <img style="width: 120px;;margin:auto;display:block" src="assets/imagenes/MisCallesLimpiasRDCircle.png">
+    </div>
+
+<div class="login--inputs">
+
+  <ion-item>
+    <ion-input placeholder="Usuario" maxlength="50" [(ngModel)]="usuario" ></ion-input>
+  </ion-item>
+<!-- Prueba -->
+  <ion-item>
+      <ion-input placeholder="Contraseña" [type]="getType()" [(ngModel)]="clave" ></ion-input>
+      <ion-icon style="align-items: flex-end;" name="eye" (click)="toggleTextPassword()"></ion-icon>
+  </ion-item>
+
+</div>
+ 
+  <div class="login--contraseña">
+    <ion-label><a href="./olvide-mi-contrasena">¿Olvidaste tu contraseña?</a></ion-label>
+  </div>
+  
+  <div class="boton-login">
+    
+    <ion-button expand="block" (click)="onIniciarSesion()">Iniciar Sesion</ion-button>
+  </div>
+  
+  <div class="ion-text-center" style="margin:auto; width:75%; padding-top: 20px;">
+    <ion-label>¿No tienes una cuenta?</ion-label>
+    <ion-label><a  href="./registro"> Registrate aqui</a></ion-label>
+    </div>
+
+  </ion-card-content>
+  </div>
+</ion-content>

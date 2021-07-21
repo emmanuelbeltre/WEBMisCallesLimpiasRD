@@ -1,0 +1,40 @@
+.ion-card-nosotros{
+
+    @include desktop{
+        font-size: 2.3rem;
+    }
+
+
+}
+.contenedor{
+.nosotros{
+
+    ion-label{
+        @include desktop{
+
+       font-size: 2rem;
+        color: $black;
+
+    }
+    }
+    
+}
+
+        .nosotros--contenido{
+           
+            ion-label{
+                 @include desktop{
+                     
+                font-size: 1.9rem;
+            }
+                
+            
+            }
+           
+            .nosotros--contenido__label{
+                  font-weight: $bold;
+               
+            
+        }
+}
+}

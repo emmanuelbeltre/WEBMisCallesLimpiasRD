@@ -1,0 +1,36 @@
+<ion-content>
+    <!-- Back button with a default href -->
+    <ion-header>
+      <ion-toolbar>
+          <ion-buttons slot="start">
+              <ion-back-button defaultHref="login"></ion-back-button>
+          </ion-buttons>
+      </ion-toolbar>
+  </ion-header>
+
+
+
+  <div style="padding: 15px;">
+    <ion-label style="color: #1A202E; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:20px;"><strong>Restablecer Contraseña</strong></ion-label> <br>
+    <br><span style="color: #647081; text-justify: auto; font-size: 14px;">Introduzca el email asociado a su cuenta y le enviaremos un correo su nueva contraseña</span>
+</div>
+<ion-label style="color: #647081; padding: 15px;">Email</ion-label><br>
+<div style="padding: 5px;">
+
+
+    <ion-card>
+        <!-- Agregar id para validar si está vacio -->
+        <ion-input style="border-radius: 5px;" maxlength="100" [(ngModel)]="email" id="emailContenido"></ion-input>
+    </ion-card>
+
+</div>
+
+
+<div style="margin:auto; width:95%; padding-top: 20px;">
+
+    <ion-button expand="block" (click)="onOlvideMiContrasena()">Enviar Contraseña</ion-button>
+
+</div>
+
+
+</ion-content>

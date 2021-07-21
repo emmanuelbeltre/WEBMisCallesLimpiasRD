@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-label *ngFor="let datosMisPuntos of misPuntos" slot="end" style="padding: 5px;">{{datosMisPuntos.puntosacumulados}}</ion-label>
+        <img slot="end" style="padding: 5px;" src="assets/imagenes/moneda.png">
+        <ion-title>Mis Bonos</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="contenedor-recibos">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Mis Bonos</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-list>
+
+        <ion-item *ngFor="let recibo of Recibos" [routerLink]="['/recompensas']">
+
+
+            <ion-avatar class="aa" slot="start">
+                <img class="bb" [src]="recibo.imagen">
+            </ion-avatar>
+            <ion-label class="contenedor-recibos--label">
+                {{recibo.nombre}}
+            </ion-label>
+
+            <div class="contenedor-recibos--label contenedor-recibos--label__codigo">
+                <ion-label slot="end">
+                    Recibo No.{{recibo.cod_recibo}}
+                </ion-label>
+
+            </div>
+
+        </ion-item>
+
+    </ion-list>
+</ion-content>

@@ -1,0 +1,17 @@
+.toolbar {
+    margin-bottom: 1rem;
+}
+
+.contenedor-recibos {
+    .contenedor-recibos--label__codigo {
+        text-align: right;
+        width: fit-content;
+    }
+    @include tablet {
+        display: flex;
+        width: 100%;
+        .contenedor-recibos--label {
+            font-size: 2.1rem;
+        }
+    }
+}
