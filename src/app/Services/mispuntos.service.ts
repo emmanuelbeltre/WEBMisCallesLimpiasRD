@@ -15,4 +15,10 @@ export class MispuntosService {
  
 //   return this.http.get('https://localhost:44371/api/MisCallesLimpiasRD/ConsultarInfMisPuntos/' + cod_usuario);
 // }
+
+
+
+ProcesarOrden(cod_usuario: any, puntos_reportes: any){
+  return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ProcesarOrden?cod_usuario='+ cod_usuario+'&puntosacumulados=' + puntos_reportes);
+}
 }

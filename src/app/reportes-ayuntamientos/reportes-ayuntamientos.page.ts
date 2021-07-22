@@ -4,6 +4,7 @@ import { MisreportesService } from '../Services/misreportes.service';
 import { AlertController } from '@ionic/angular';
 import { Variableglobal } from '../variableglobal';
 import {RegistroService} from '../Services/registro.service';
+import {MispuntosService} from '../Services/mispuntos.service'
 
 @Component({
   selector: 'app-reportes-ayuntamientos',
@@ -14,7 +15,8 @@ export class ReportesAyuntamientosPage implements OnInit {
   cod_usuario:any;
   cod_reporte:any;
   ubicacion:any;
-  public reportes: any;
+  puntos_reporte: any;
+  reportes: any;
   public niveles:any;
   public datos:any;
 
@@ -23,7 +25,8 @@ export class ReportesAyuntamientosPage implements OnInit {
   constructor(
     public alertController: AlertController, 
     public nivelUsuario: RegistroService,
-    public servicio:MisreportesService, ) { 
+    public servicio:MisreportesService,
+    public servicioPuntos: MispuntosService ) { 
     this.cod_usuario = Variableglobal.cod_usuario;
 }
 
@@ -56,18 +59,7 @@ ngOnInit() {
 
 }
 
-CancelarDb(){
-// let cod_reporte = 35;
-  this.servicio.eliminarReporte(this.cod_reporte).subscribe((data)=>
-  {this.reportes = data;},
-    (error)=>{console.log(error);}
-  )
-
-
-}
-
-
-  cancelarReporte(i){
+ async cancelarReporte(i){
     
   // let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
   //Obtenemos el id del código de reportes de forma dinámica
@@ -82,22 +74,46 @@ CancelarDb(){
     {this.reportes = data;},
       (error)=>{console.log(error);}
     )
+    alert('Cancelación Exitosa');
 
- 
-
-     this.cargarReportes();
+  this.cargarReportes();
    }
-
-
-
 
    else {
      alert('Proceso Detenido');
    }
+  }
+
+
+   procesarReporte(i){
+      /// Obtenemos el id del código del usuario que hizo el reporte  de forma dinámica
+    this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);
+    console.log(this.cod_usuario);
+    this.puntos_reporte = 10;   
+      this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
+      .subscribe(
+        (data)=>{this.reportes = data;},
+        (error)=>{console.log(error);}
+      )
+   }
+
   
 
 
-  }
+  // procesarReporte(i){
+
+  //   this.puntos_reporte = 10;
+
+  //   this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);
+  
+  //   this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
+  //   .subscribe(
+  //     (data)=>{this.reportes = data;},
+  //     (error)=>{console.log(error);}
+  //   )
+    
+  // }
+
 
 
   cargarReportes(){

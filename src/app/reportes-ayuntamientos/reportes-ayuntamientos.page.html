@@ -21,6 +21,9 @@
         <ion-label class="codigo">
             Código
         </ion-label>
+        <ion-label class="botones--procesar--cancelar">
+            ---
+        </ion-label>
     </ion-item>
     <ion-button id="{{'cargar'}}" color="success" (click)="cargarReportes();">
         <ion-icon name="wallet" slot="start"></ion-icon>
@@ -29,6 +32,7 @@
     <ion-list class="reportes" *ngFor="let reporte of reportes; let i = index">
 
         <ion-item button detail="false">
+
             <img src="assets/imagenes/basura.png" class="imagen">
 
 
@@ -44,6 +48,8 @@
 
                 <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label>
 
+                <ion-label class="cod_usuario" id="{{'cod_usuario' + i}}"> {{reporte.cod_usuario}} </ion-label>
+
             </div>
 
             <div>
@@ -51,7 +57,7 @@
                     <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
                     Cancelar
                 </ion-button>
-                <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="canjearPuntos(i);">
+                <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
                     <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
                     Procesar
                 </ion-button>
@@ -59,6 +65,7 @@
         </ion-item>
 
     </ion-list>
+
 
 
 

@@ -1,39 +1,71 @@
-.contenedor--reportes{
+.contenedor--reportes {
     width: 100%;
     justify-content: space-between;
     // grid-template-columns: repeat(3, 1fr);
-    .reportes{
+    .reportes-header {
+        width: 100%;
+        display: flex;
+        font-weight: $bold;
+        @include tablet {
+            font-size: 2.1rem;
+        }
+        ion-label {
+            font-weight: bold;
+        }
+        .codigo {
+            text-align: end;
+            margin-right: 3%;
+            @include tablet {
+                text-align: end;
+                margin-right: 6%;
+                padding-left: 3%;
+            }
+        }
+        .ubicacion {
+            padding-left: 6%;
+        }
+        .botones--procesar--cancelar {
+            text-align: end;
+            margin-right: 10%;
+        }
+    }
+    .reportes {
+        grid-template-columns: repeat(3, 1fr);
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-    
-        .reportes--datos{
+        justify-content: space-between;
+        .imagen {
+            @include tablet {
+                width: 3rem;
+                padding-right: 5rem;
+            }
+        }
+        .reportes--datos {
             display: flex;
             width: 100%;
-
-            @include tablet{
-                font-size: 2.1rem;
+            .cod_usuario {
+                display: none;
             }
-            .reportes--datos__latlong{
-                margin-left: 8%;
+            @include tablet {
+                font-size: 1.7rem;
+            }
+            .reportes--datos__latlong {
+                // width: 75%;
+                // margin-left: 12%;
                 width: auto;
-                @include tablet{   
+                margin: auto;
+                text-align: end;
+                margin-left: 20%;
+                @include tablet {
                     margin-left: 20%;
                 }
             }
-           .reportes--datos__codigo{
-                    font-weight: $bold;
-                    width: auto;
-                    margin-left: 8%;
-                    text-align: end; 
-                @include tablet {
-                    margin-left: 35%;
-                }
-           }
-
-           
-         
-           
+            .reportes--datos__codigo {
+                width: auto;
+                margin: auto;
+                text-align: start;
+                margin-right: 25%;
+            }
         }
     }
 }

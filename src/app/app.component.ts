@@ -15,11 +15,11 @@ export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/inicio-mapa', icon: 'mail' },
     {title: 'Reportes', url: '/reportes-ayuntamientos', icon: 'paper-plane'},
-    { title: 'Mis Puntos', url: '/mis-puntos', icon: 'cash' },
     { title: 'Informate', url: '/informate', icon: 'book' },
     { title: 'Acerca de', url: '/sobre-nosotros', icon: 'reader' },
-    { title: 'Mi Perfil', url: '/mi-perfil', icon: 'people' },
-    { title: 'Mis Bonos', url: '/recibos-bonos', icon: 'receipt' },
+    { title: 'Perfil de la Empresa', url: '/mi-perfil', icon: 'people' },
+    { title: 'Bonos', url: '/recibos-bonos', icon: 'receipt' },
+    { title: 'Recompensas', url: '/recompensas', icon: 'receipt' },
   ];
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   myname: any;
