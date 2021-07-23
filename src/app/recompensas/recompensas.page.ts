@@ -88,13 +88,54 @@ export class RecompensasPage implements OnInit {
  puntosAcumulados:any;
  precioArticulo:any;
  articuloSeleccionado:any;
- cod_recompensas:any;
-
  cod_puntos:any;
+
+ //Para seleccionar
+ cod_recompensas:any;
+ nombre_recompensa:any;
+ boton:any;
+ puntos:any;
+ imagenUrl:any
+ 
+ //datos para llenar
+ imagenUrlReceptor:any;
+ cod_recompensaReceptor:any;
+ puntosReceptor:any;
+ nombre_recompensaReceptor:any;
 
  
 
 
+    ocultarSeccion(){
+      (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
+    }
+
+    mostrarSeccion(){
+      (document.getElementById('clases') as HTMLDivElement).className = "mostrar";
+    }
+
+    Enfocar() {
+      document.getElementById("descripcion").focus();
+    }
+
+    llenarDatos(i){
+
+      //this.mostrarSeccion();
+     
+      //this.Enfocar();
+
+      this.puntos=((document.getElementById('puntosArticulo' + i) as HTMLIonLabelElement).textContent);
+      this.boton = (document.getElementById('editarEliminar' + i) as HTMLIonButtonElement).id;
+      this.precioArticulo = ((document.getElementById('puntosArticulo' + i) as HTMLIonLabelElement).textContent);
+      this.imagenUrl=((document.getElementById('imagen' +i) as HTMLImageElement).textContent);
+      this.cod_recompensas = ((document.getElementById('cod_recompensas' +i) as HTMLIonLabelElement).textContent);
+      this.nombre_recompensa = ((document.getElementById('nombre_recompensa' +i) as HTMLIonLabelElement).textContent);
+      
+
+      console.log (this.nombre_recompensa)
+      
+      
+    }
 
 
  canjearPuntos(i) {

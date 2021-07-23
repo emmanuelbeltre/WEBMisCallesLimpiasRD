@@ -1,30 +1,11 @@
 <ion-header [translucent]="true">
-    <!-- Agregamos un bucle for para que muestre los puntos disponibles -->
-
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <!-- Obtenemos los puntos acumulados -->
-
-        <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
-        $(function(){
-            $("#codigo").load("ajax/test.html", function() {
-            alert("Load was performed.");
-            });     
-            
-        })
-    </script> -->
-
-        <ion-label *ngFor="let datosMisPuntos of misPuntos" slot="end" style="padding: 5px;" id="puntos">{{datosMisPuntos.puntosacumulados}}</ion-label>
-
-
-        <ion-label *ngFor="let datosMisPuntos of misPuntos" class="ocultar" id="cod_puntos">{{datosMisPuntos.cod_puntos}}</ion-label>
+        <ion-label *ngFor="let datosMisPuntos of misPuntos;" class="ocultar" id="cod_puntos">{{datosMisPuntos.cod_puntos}}</ion-label>
         <img slot="end" style="padding: 5px;" src="assets/imagenes/moneda.png">
-        <ion-title>Mis Puntos</ion-title>
-
-
+        <ion-title>Recompensas</ion-title>
     </ion-toolbar>
 
 </ion-header>
@@ -36,48 +17,64 @@
         </ion-toolbar>
     </ion-header>
 
-    <div id="container">
+    <div id="container" class="recompensas">
         <!-- Obtenemos todos los artículos disponibles recorriendo la bd con un ciclo foor -->
         <ion-card *ngFor="let recompensa of recompensas;  let i = index">
             <ion-card-header>
                 <!-- llamamos al nombre de la recompensa -->
                 <ion-card-title>
-                    <ion-label id="{{'cod_recompensas' + i}}">{{recompensa.cod_recompensa}}</ion-label> {{recompensa.nombre}}</ion-card-title>
+                    <ion-label id="{{'cod_recompensas' + i}}">{{recompensa.cod_recompensa}} </ion-label>
+                    <ion-label id="{{'nombre_recompensa' + i}}">{{recompensa.nombre}}</ion-label>
+                </ion-card-title>
 
             </ion-card-header>
             <ion-card-content>
-                <img src={{recompensa.imagen}}>
+                <img src={{recompensa.imagen}} style="width: 150px; height: 150px;">
+                <ion-label class="ocultar" id="{{'imagen' + i}}"> {{recompensa.imagen}} </ion-label>
                 <br>
-
-                <!-- Asignamos un ID único a cada botón que se autogenere -->
-                <ion-button id="{{'boton' + i}}" color="warning" (click)="canjearPuntos(i);">
-                    <ion-icon name="wallet" slot="start"></ion-icon>
-                    Usar Puntos
-                </ion-button>
-
                 <br>
                 <ion-list>
                     <ion-item>
-                        <!-- Obtenemos los puntos de la recompensa -->
-                        <ion-label color="warning">{{recompensa.puntos}}</ion-label>
-                        <!-- Le asignamos un ID dinámico a cada kabel de puntos que se genere -->
-
-                        <ion-checkbox slot="end" color="warning" id="{{'puntosArticulo' + i}}">{{recompensa.puntos}}</ion-checkbox>
-
+                        <ion-label color="warning" id="{{'puntosArticulo' + i}}">{{recompensa.puntos}}</ion-label>
                         <label slot="start" class="centrarlabel"> Puntos</label>
                     </ion-item>
                 </ion-list>
-
                 <br>
                 <label class="centrarlabel"><b>Descripcion:</b> </label>
-                <!-- Llamamos a la descripcción de la recompensa -->
                 <label class="centrarlabel"> {{recompensa.descripcion}}</label>
+                <br>
+                <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Eliminar Recompensa</ion-button>
             </ion-card-content>
         </ion-card>
 
     </div>
+
+
     <ion-card>
+        <div id="clases" class="ocultar">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-title size="large">Editar o Eliminar</ion-title>
+                </ion-card-title>
+            </ion-card-header>
 
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cod Recompensa
+                <ion-label id="cod_recompensaReceptor">.</ion-label>
+            </ion-label>
+            <br><br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Recompensa</ion-label>
+            <ion-input [(ngModel)]="txt_urla_imagen" placeholder="URL Imagen" id="imagenUrlReceptor"></ion-input>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cantidad de Puntos</ion-label>
+            <ion-input [(ngModel)]="txt_puntos_recompensa" placeholder="Puntos" id="puntosReceptor"></ion-input>
 
+            <label for="story">Descriocion del artículo:</label>
+            <br>
+            <textarea id="descripcion" name="story" rows="5" cols="33"></textarea>
 
+            <br><br>
+
+            <ion-button>Editar</ion-button>
+            <ion-button color="warning">Eliminar</ion-button>
+            <ion-button color="danger" (click)="ocultarSeccion();">Cancelar</ion-button>
+        </div>
     </ion-card>

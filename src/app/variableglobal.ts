@@ -6,7 +6,7 @@ export class Variableglobal {
   public static clave:any;
   public static telefono_Usuario:any;
   public static cod_nivel:any; 
+  public static foto_usuario:any; 
 
   
 }
-
