@@ -1,5 +1,5 @@
 textarea {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     letter-spacing: 1px;
     padding: 10px;
     width: 40rem;
@@ -12,6 +12,15 @@ textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
+}
+
+.textArea {
+    width: 40rem;
+    height: 3rem;
+    max-width: 40rem;
+    max-height: 3rem;
+    min-width: 40rem;
+    min-height: 3rem;
 }
 
 .recompensas {

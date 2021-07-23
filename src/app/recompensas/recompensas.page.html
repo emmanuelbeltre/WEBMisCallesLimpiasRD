@@ -41,11 +41,14 @@
                 </ion-list>
                 <br>
                 <label class="centrarlabel"><b>Descripcion:</b> </label>
-                <label class="centrarlabel"> {{recompensa.descripcion}}</label>
+
+                <label id="{{'descripcion' + i}}" class="centrarlabel"> {{recompensa.descripcion}}</label>
                 <br>
                 <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Eliminar Recompensa</ion-button>
             </ion-card-content>
+            <ion-input [disabled]="buttonDisabled"></ion-input>
         </ion-card>
+
 
     </div>
 
@@ -58,21 +61,23 @@
                 </ion-card-title>
             </ion-card-header>
 
-            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cod Recompensa
-                <ion-label id="cod_recompensaReceptor">.</ion-label>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Código :
+                <ion-label id="cod_recompensaReceptor"></ion-label>
             </ion-label>
             <br><br>
-            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Recompensa</ion-label>
-            <ion-input [(ngModel)]="txt_urla_imagen" placeholder="URL Imagen" id="imagenUrlReceptor"></ion-input>
-            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cantidad de Puntos</ion-label>
-            <ion-input [(ngModel)]="txt_puntos_recompensa" placeholder="Puntos" id="puntosReceptor"></ion-input>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">Nombre</ion-label> <br>
+            <textarea class="textArea" name="story" rows="5" cols="33" placeholder="Nombre Recompensa" id="nombre_recompensaReceptor"></textarea> <br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cantidad de Puntos</ion-label> <br>
+            <textarea (keypress)="restrictNumeric($event)" class="textArea" name="story" rows="5" cols="33" placeholder="Puntos" id="puntosReceptor"></textarea> <br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Recompensa</ion-label> <br>
+            <textarea class="textArea" name="story" rows="5" cols="33" placeholder="URL Imagen" id="imagenUrlReceptor"></textarea><br>
+
 
             <label for="story">Descriocion del artículo:</label>
             <br>
             <textarea id="descripcion" name="story" rows="5" cols="33"></textarea>
 
             <br><br>
-
             <ion-button>Editar</ion-button>
             <ion-button color="warning">Eliminar</ion-button>
             <ion-button color="danger" (click)="ocultarSeccion();">Cancelar</ion-button>

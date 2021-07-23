@@ -95,16 +95,18 @@ export class RecompensasPage implements OnInit {
  nombre_recompensa:any;
  boton:any;
  puntos:any;
- imagenUrl:any
+ imagenUrl:any;
+ descripcion_recompensa:any;
+
  
  //datos para llenar
  imagenUrlReceptor:any;
  cod_recompensaReceptor:any;
  puntosReceptor:any;
  nombre_recompensaReceptor:any;
+ descripcion_recompensaReceptor:any;
 
- 
-
+ dynamicVariable =true;
 
     ocultarSeccion(){
       (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
@@ -119,23 +121,59 @@ export class RecompensasPage implements OnInit {
     }
 
     llenarDatos(i){
-
-      //this.mostrarSeccion();
+      //Mostramos La sección para editar o eliminar
+      this.mostrarSeccion();
      
-      //this.Enfocar();
+      //Dirigimos la pantalla a esa zona
+      this.Enfocar();
 
+      
+      //this.boton = (document.getElementById('editarEliminar' + i) as HTMLIonButtonElement).id;
+
+
+      //Datos de las recompentas
       this.puntos=((document.getElementById('puntosArticulo' + i) as HTMLIonLabelElement).textContent);
-      this.boton = (document.getElementById('editarEliminar' + i) as HTMLIonButtonElement).id;
+   
       this.precioArticulo = ((document.getElementById('puntosArticulo' + i) as HTMLIonLabelElement).textContent);
       this.imagenUrl=((document.getElementById('imagen' +i) as HTMLImageElement).textContent);
       this.cod_recompensas = ((document.getElementById('cod_recompensas' +i) as HTMLIonLabelElement).textContent);
       this.nombre_recompensa = ((document.getElementById('nombre_recompensa' +i) as HTMLIonLabelElement).textContent);
-      
+      this.descripcion_recompensa = ((document.getElementById('descripcion' +i) as HTMLIonLabelElement).textContent);
 
-      console.log (this.nombre_recompensa)
+      console.log(this.descripcion_recompensa);
       
+      // imagenUrlReceptor:any;
+      // cod_recompensaReceptor:any;
+      // puntosReceptor:any;
+      // nombre_recompensaReceptor:any;
+
+      this.puntosReceptor = (document.getElementById('puntosReceptor')).innerHTML = this.puntos;
+      this.imagenUrlReceptor = (document.getElementById('imagenUrlReceptor')).innerHTML = this.imagenUrl;
+      this.descripcion_recompensaReceptor = (document.getElementById('descripcion')).innerHTML = this.descripcion_recompensa;
+      this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')).innerHTML = this.cod_recompensas;
+      this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')).innerHTML = this.nombre_recompensa;
       
     }
+
+    public restrictNumeric(e) {
+      let input;
+      if (e.metaKey || e.ctrlKey) {
+  
+        return true;
+      }
+      if (e.which === 32) {
+       return false;
+      }
+      if (e.which === 0) {
+       return true;
+      }
+      if (e.which < 33) {
+        return true;
+      }
+      input = String.fromCharCode(e.which);
+      return !!/[\d\s]/.test(input);
+    
+     }
 
 
  canjearPuntos(i) {
