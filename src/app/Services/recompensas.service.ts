@@ -12,16 +12,24 @@ export class RecompensasService {
 
   obtenerrecompensas(){
     return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas');
+    // return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas');
   }
 
-//   return this.http.get('https://localhost:44371/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas');
-// }
 
 
-  obtenerMisPuntos(cod_usuario: any){
-    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarInfMisPuntos?cod_usuario=' + cod_usuario);
-  }
 
-//   return this.http.get('https://localhost:44371/api/MisCallesLimpiasRD/ConsultarInfMisPuntos/' + cod_usuario);
-// }
+      actualizarRecompensas(cod_recompensa:any,  puntos:any,  nombre:any,  imagen:any,  descripcion:any){
+        return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ActualizarRecompensa?cod_recompensa=' + cod_recompensa + '&puntos=' + puntos + '&nombre='+nombre+ '&imagen=' + imagen + '&descripcion=' + descripcion );
+      }
+
+      // eliminarRecompensas(cod_usuario: any){
+      //   return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarInfMisPuntos?cod_usuario=' + cod_usuario);
+      // }
+
+      // agregarRecompensas(cod_usuario: any){
+      //   return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarInfMisPuntos?cod_usuario=' + cod_usuario);
+      // }
+
+
+
 }

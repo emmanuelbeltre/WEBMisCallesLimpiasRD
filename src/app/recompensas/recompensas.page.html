@@ -3,6 +3,9 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <div class="elBoton">
+            <ion-button id="cargar" color="danger" class="mostrar" (click)="CargarRecompensas();"></ion-button>
+        </div>
         <ion-label *ngFor="let datosMisPuntos of misPuntos;" class="ocultar" id="cod_puntos">{{datosMisPuntos.cod_puntos}}</ion-label>
         <img slot="end" style="padding: 5px;" src="assets/imagenes/moneda.png">
         <ion-title>Recompensas</ion-title>
@@ -78,7 +81,7 @@
             <textarea id="descripcion" name="story" rows="5" cols="33"></textarea>
 
             <br><br>
-            <ion-button>Editar</ion-button>
+            <ion-button (click)="ActualizarRecompensa();">Editar</ion-button>
             <ion-button color="warning">Eliminar</ion-button>
             <ion-button color="danger" (click)="ocultarSeccion();">Cancelar</ion-button>
         </div>

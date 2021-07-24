@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./recompensas.page.scss'],
 })
 export class RecompensasPage implements OnInit {
-  cod_usuario:any;
+  // cod_usuario:any;
   public datos:any;
   subscription: Subscription;
 
@@ -28,7 +28,7 @@ export class RecompensasPage implements OnInit {
     public alertController: AlertController,
     private router:Router
     ) { 
-      this.cod_usuario = Variableglobal.cod_usuario;
+      // this.cod_usuario = Variableglobal.cod_usuario;
 
     }
   
@@ -36,32 +36,45 @@ export class RecompensasPage implements OnInit {
   misPuntos:any;
   
   ngOnInit() {
-    this.cod_usuario = Variableglobal.cod_usuario;
-    this.servicio.obtenerrecompensas()
-    .subscribe(
-      (data)=>{this.recompensas = data;},
+
+    this.servicio.obtenerrecompensas().subscribe((data)=>{
+      this.recompensas = data;},
       (error)=>{console.log(error);}
     )
+    // this.cod_usuario = Variableglobal.cod_usuario;
+ 
 
    
       //Esta variable llamada this.cod_usuario almacena el ID del usuario. 
       //Obtenemos los puntos del usuario logeado corrientemente
-      this.cod_usuario = Variableglobal.cod_usuario;    
-      this.servicioPuntos.obtenerMisPuntos(this.cod_usuario)
-      .subscribe(
-        (data)=>{this.misPuntos = data;},
-        (error)=>{console.log(error);}
-      )
+      // this.cod_usuario = Variableglobal.cod_usuario;    
+
+
+      //comentado temporalmente
+      // this.servicioPuntos.obtenerMisPuntos(this.cod_usuario)
+      // .subscribe(
+      //   (data)=>{this.misPuntos = data;},
+      //   (error)=>{console.log(error);}
+      // )
 
       //Llamamos al procedimiento para actualizar los puntos
-    this.servicioActualizarPuntos.ActualizarPuntos(this.cod_puntos, this.cod_usuario, this.puntosAcumulados)
-    .subscribe(
-      (data)=>{this.recompensas = data;}, 
-      (error)=>{console.log(error);}
-    )   
+    // this.servicioActualizarPuntos.ActualizarPuntos(this.cod_puntos, this.cod_usuario, this.puntosAcumulados)
+    // .subscribe(
+    //   (data)=>{this.recompensas = data;}, 
+    //   (error)=>{console.log(error);}
+    // )   
     
 
     
+  }
+
+  //obtener recompensas
+
+  CargarRecompensas(){
+    this.servicio.obtenerrecompensas().subscribe((data)=>{
+      this.recompensas = data;},
+      (error)=>{console.log(error);}
+    )
   }
 
   async SuccesAlert() {
@@ -106,19 +119,70 @@ export class RecompensasPage implements OnInit {
  nombre_recompensaReceptor:any;
  descripcion_recompensaReceptor:any;
 
- dynamicVariable =true;
 
+ //para servicio
+
+
+
+
+ //Oculta la sección de editar y actualizar recompensas
     ocultarSeccion(){
+      this.vaciarElementos();
       (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
+      (document.getElementById('container') as HTMLDivElement).className = "mostrar";
+      
     }
 
+    //Muestra la sección  de editar y actualizar recompensas
     mostrarSeccion(){
       (document.getElementById('clases') as HTMLDivElement).className = "mostrar";
+      (document.getElementById('container') as HTMLDivElement).className = "ocultar";
     }
 
+    //Enfoca la sección de editar y actualizar recompensas
     Enfocar() {
       document.getElementById("descripcion").focus();
     }
+
+    //Deja en "" los elementos a eliminar / modificar
+    vaciarElementos(){
+      this.puntosReceptor = (document.getElementById('puntosReceptor')as HTMLIonInputElement).value = "";
+      this.imagenUrlReceptor = (document.getElementById('imagenUrlReceptor')as HTMLIonInputElement).value = "";
+      this.descripcion_recompensaReceptor = (document.getElementById('descripcion')as HTMLIonInputElement).value = "";
+      this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonInputElement).value = "";
+      this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')as HTMLIonInputElement).value = "";
+
+    }
+
+      ActualizarRecompensa(){
+        this.puntosReceptor = (document.getElementById('puntosReceptor')as HTMLTextAreaElement).value;
+        this.imagenUrlReceptor = (document.getElementById('imagenUrlReceptor')as HTMLTextAreaElement).value;
+        this.descripcion_recompensaReceptor = (document.getElementById('descripcion')as HTMLTextAreaElement).value;
+        this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonLabelElement).textContent;
+        this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')as HTMLTextAreaElement).value;
+         
+        // console.log( this.cod_recompensaReceptor);
+        //   console.log( this.nombre_recompensaReceptor);
+        //   console.log(this.puntosReceptor);
+        //   console.log(this.imagenUrlReceptor);
+        //   console.log(this.descripcion_recompensaReceptor );
+
+
+       let resultado=   window.confirm('Estas seguro de que desea modificacer la recompensa No. ?' + this.cod_recompensaReceptor );
+            if (resultado === true) {
+              this.servicio.actualizarRecompensas( this.cod_recompensaReceptor,   this.puntosReceptor,  this.nombre_recompensaReceptor,  this.imagenUrlReceptor,  this.descripcion_recompensaReceptor)
+              .subscribe(
+                (data)=>{this.recompensas = data;},
+                (error)=>{console.log(error);}
+              )
+              alert('Actualización Exitosa');
+              document.getElementById("cargar").click();
+              this.ocultarSeccion();
+                
+            } else { 
+                window.alert('Intenelo más tarde');
+            }
+      }
 
     llenarDatos(i){
       //Mostramos La sección para editar o eliminar
@@ -126,7 +190,7 @@ export class RecompensasPage implements OnInit {
      
       //Dirigimos la pantalla a esa zona
       this.Enfocar();
-
+      (document.getElementById('container') as HTMLDivElement).className = "ocultar";
       
       //this.boton = (document.getElementById('editarEliminar' + i) as HTMLIonButtonElement).id;
 
@@ -141,17 +205,15 @@ export class RecompensasPage implements OnInit {
       this.descripcion_recompensa = ((document.getElementById('descripcion' +i) as HTMLIonLabelElement).textContent);
 
       console.log(this.descripcion_recompensa);
-      
-      // imagenUrlReceptor:any;
-      // cod_recompensaReceptor:any;
-      // puntosReceptor:any;
-      // nombre_recompensaReceptor:any;
+ 
 
-      this.puntosReceptor = (document.getElementById('puntosReceptor')).innerHTML = this.puntos;
-      this.imagenUrlReceptor = (document.getElementById('imagenUrlReceptor')).innerHTML = this.imagenUrl;
-      this.descripcion_recompensaReceptor = (document.getElementById('descripcion')).innerHTML = this.descripcion_recompensa;
-      this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')).innerHTML = this.cod_recompensas;
-      this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')).innerHTML = this.nombre_recompensa;
+      this.puntosReceptor = (document.getElementById('puntosReceptor')as HTMLIonInputElement).value = this.puntos;
+      this.imagenUrlReceptor = (document.getElementById('imagenUrlReceptor')as HTMLIonInputElement).value = this.imagenUrl;
+      this.descripcion_recompensaReceptor = (document.getElementById('descripcion')as HTMLIonInputElement).value = this.descripcion_recompensa;
+      this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonLabelElement).textContent = this.cod_recompensas;
+      this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')as HTMLIonInputElement).value = this.nombre_recompensa;
+
+      this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor') as HTMLIonInputElement).textContent =  this.nombre_recompensa;
       
     }
 
@@ -178,100 +240,99 @@ export class RecompensasPage implements OnInit {
 
  canjearPuntos(i) {
  
-  //Almacena los puntos cumulados por el usuario
-   this.puntosAcumulados= ((document.getElementById("puntos") as HTMLIonLabelElement).textContent);
+//   //Almacena los puntos cumulados por el usuario
+//    this.puntosAcumulados= ((document.getElementById("puntos") as HTMLIonLabelElement).textContent);
 
-  //Almacena el precio del articulo
-  this.precioArticulo = ((document.getElementById('puntosArticulo' + i) as HTMLIonCheckboxElement).textContent);
+//   //Almacena el precio del articulo
+//   this.precioArticulo = ((document.getElementById('puntosArticulo' + i) as HTMLIonCheckboxElement).textContent);
 
-  //Valida cual de los artículos fue seleccionado o si un artículo fue seleccionado
-  this.articuloSeleccionado = ((document.getElementById('puntosArticulo' + i) as HTMLIonCheckboxElement).checked);
+//   //Valida cual de los artículos fue seleccionado o si un artículo fue seleccionado
+//   this.articuloSeleccionado = ((document.getElementById('puntosArticulo' + i) as HTMLIonCheckboxElement).checked);
 
-  //Capturamos el id del boton 
-  let botonId = ((document.getElementById('boton'+i) as HTMLIonButtonElement).id);
+//   //Capturamos el id del boton 
+//   let botonId = ((document.getElementById('boton'+i) as HTMLIonButtonElement).id);
 
-  //Almacenamos el cod_puntos que está activo en ese momento.
-  this.cod_puntos=((document.getElementById('cod_puntos') as HTMLIonLabelElement).textContent);
+//   //Almacenamos el cod_puntos que está activo en ese momento.
+//   this.cod_puntos=((document.getElementById('cod_puntos') as HTMLIonLabelElement).textContent);
 
 
-  //Seleccionamos el untimo caracter de los botones dinámicos.
-  let ultimoCaracterBoton = botonId.charAt(botonId.length - 1);
+//   //Seleccionamos el untimo caracter de los botones dinámicos.
+//   let ultimoCaracterBoton = botonId.charAt(botonId.length - 1);
 
-//Cambiamos el tipo de datos a entero para poder hacer la resta
-  let puntosInt= parseInt(this.puntosAcumulados);
-  let precioInt =parseInt(this.precioArticulo);
+// //Cambiamos el tipo de datos a entero para poder hacer la resta
+//   let puntosInt= parseInt(this.puntosAcumulados);
+//   let precioInt =parseInt(this.precioArticulo);
  
-//Obtenemos el ID del artículo para luego insertarlo en el recibo
-  this.cod_recompensas = ((document.getElementById('cod_recompensas'+ i) as HTMLInputElement).textContent);
+// //Obtenemos el ID del artículo para luego insertarlo en el recibo
+//   this.cod_recompensas = ((document.getElementById('cod_recompensas'+ i) as HTMLInputElement).textContent);
 
 
  
 
-  console.log( this.cod_recompensas);
-  console.log(this.cod_puntos);
+//   console.log( this.cod_recompensas);
+//   console.log(this.cod_puntos);
 
 
 
   
-  //Para registro de recibo
+//   //Para registro de recibo
 
-//Condición que valida si el botón seleccionado y el index son el mismo, además si el checkbox está seleccionado
-  if (i == ultimoCaracterBoton && this.articuloSeleccionado==true){
+// //Condición que valida si el botón seleccionado y el index son el mismo, además si el checkbox está seleccionado
+//   if (i == ultimoCaracterBoton && this.articuloSeleccionado==true){
 
 
-    //Condición que valida si los puntos de la recompensa exceden los puntos que tenemos
-      if(precioInt > puntosInt){
-        alert('El artículo seleccionado excede la cantidad de puntos acumulados');
-        return;
+//     //Condición que valida si los puntos de la recompensa exceden los puntos que tenemos
+//       if(precioInt > puntosInt){
+//         alert('El artículo seleccionado excede la cantidad de puntos acumulados');
+//         return;
 
-        }
+//         }
         
-    //Confirma antes de procesar el cambio de recompensa por puntos
-    if (confirm('¿Está seguro de que desea cambiar sus puntos por este artículo?')) {
+//     //Confirma antes de procesar el cambio de recompensa por puntos
+//     if (confirm('¿Está seguro de que desea cambiar sus puntos por este artículo?')) {
      
-      let resultado = parseInt(this.puntosAcumulados) - parseInt(this.precioArticulo);
-      console.log(resultado);
+//       let resultado = parseInt(this.puntosAcumulados) - parseInt(this.precioArticulo);
+//       console.log(resultado);
 
-      let cod_usuarios, puntos_acumulados;
-      cod_usuarios = this.cod_usuario;
-      puntos_acumulados = resultado;
+//       let cod_usuarios, puntos_acumulados;
+//       cod_usuarios = this.cod_usuario;
+//       puntos_acumulados = resultado;
 
  
  
-  //Creamos los datos del recibo e insertamos los datos en la tabla Recibos
-  this.servicioActualizarPuntos.ActualizarPuntos(this.cod_puntos,puntos_acumulados,cod_usuarios).subscribe((data)=>{
-    this.datos=data;
-    if(this.datos.respuesta=="OK"){
-        alert('¡Enhorabuena!, su recompensa ha sido procesada');
-        this.registroRecibo.IngresarRecibo(this.cod_usuario,this.cod_recompensas).subscribe((data)=>{
-          this.datos = data; 
-          console.log (this.datos);
+//   //Creamos los datos del recibo e insertamos los datos en la tabla Recibos
+//   this.servicioActualizarPuntos.ActualizarPuntos(this.cod_puntos,puntos_acumulados,cod_usuarios).subscribe((data)=>{
+//     this.datos=data;
+//     if(this.datos.respuesta=="OK"){
+//         alert('¡Enhorabuena!, su recompensa ha sido procesada');
+//         this.registroRecibo.IngresarRecibo(this.cod_usuario,this.cod_recompensas).subscribe((data)=>{
+//           this.datos = data; 
+//           console.log (this.datos);
 
-          document.getElementById('puntos').innerHTML =resultado+"";
+//           document.getElementById('puntos').innerHTML =resultado+"";
           
-        },
-        (error)=>{
-          alert(error);
-        });
+//         },
+//         (error)=>{
+//           alert(error);
+//         });
         
-    }
-    else{
-      console.log('No funcionó')
-    }
+//     }
+//     else{
+//       console.log('No funcionó')
+//     }
     
     
-  })
+//   })
 
       
-      } 
+//       } 
 
-    }
-    //Condición que devuelvel mensaje cuando no se marca ningún checkbox
-    else{
-      alert('Recuerde seleccionar la recompensa a cambiar.');
-      return;
-    }
-    // this.router.navigate(['/login']); 
+//     }
+//     else{
+//       alert('Recuerde seleccionar la recompensa a cambiar.');
+//       return;
+//     }
+
   
   }
 
