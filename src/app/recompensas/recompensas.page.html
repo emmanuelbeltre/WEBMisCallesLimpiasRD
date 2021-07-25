@@ -76,13 +76,47 @@
             <textarea class="textArea" name="story" rows="5" cols="33" placeholder="URL Imagen" id="imagenUrlReceptor"></textarea><br>
 
 
-            <label for="story">Descriocion del artículo:</label>
+            <label for="story">Descripcion del artículo:</label>
             <br>
             <textarea id="descripcion" name="story" rows="5" cols="33"></textarea>
 
             <br><br>
             <ion-button (click)="ActualizarRecompensa();">Editar</ion-button>
-            <ion-button color="warning">Eliminar</ion-button>
+            <ion-button color="warning" (click)="eliminarRecompensa();">Eliminar</ion-button>
             <ion-button color="danger" (click)="ocultarSeccion();">Cancelar</ion-button>
+
+
+            <ion-button color="success" (click)="mostrarSeccion2();">Nuevo</ion-button>
+        </div>
+    </ion-card>
+
+
+    <ion-card>
+        <div id="agregar" class="ocultar">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-title size="large">Agregar Nueva Recompensa</ion-title>
+                </ion-card-title>
+            </ion-card-header>
+
+            <!-- <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Código :
+                <ion-label id="cod_recompensaReceptor"></ion-label>
+            </ion-label> -->
+            <br><br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">Nombre</ion-label> <br>
+            <textarea class="textArea" name="story" rows="5" cols="33" placeholder="Nombre Recompensa" id="nombre_recompensaAgregar"></textarea> <br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Cantidad de Puntos</ion-label> <br>
+            <textarea (keypress)="restrictNumeric($event)" class="textArea" name="story" rows="5" cols="33" placeholder="Puntos" id="puntosAgregar"></textarea> <br>
+            <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Recompensa</ion-label> <br>
+            <textarea class="textArea" name="story" rows="5" cols="33" placeholder="URL Imagen" id="imagenUrlAgregar"></textarea><br>
+
+
+            <label for="story">Descripcion del artículo:</label>
+            <br>
+            <textarea id="descripcionAgregar" name="story" rows="5" cols="33"></textarea>
+
+            <br><br>
+            <ion-button color="success" (click)="agregarRecompensa();">Guardar</ion-button>
+            <ion-button color="danger" (click)="ocultarSeccion2();">Cancelar</ion-button>
         </div>
     </ion-card>

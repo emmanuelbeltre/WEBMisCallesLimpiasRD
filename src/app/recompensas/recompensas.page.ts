@@ -120,7 +120,11 @@ export class RecompensasPage implements OnInit {
  descripcion_recompensaReceptor:any;
 
 
- //para servicio
+ //datos para agregar
+ nombre_recompensaAgregar:any;
+ puntosAgregar:any;
+ imagenUrlAgregar:any;
+ descripcionAgregar:any;
 
 
 
@@ -129,13 +133,25 @@ export class RecompensasPage implements OnInit {
     ocultarSeccion(){
       this.vaciarElementos();
       (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
-      (document.getElementById('container') as HTMLDivElement).className = "mostrar";
+      (document.getElementById('container') as HTMLDivElement).className = "mostrar"; 
       
+      (document.getElementById('agregar') as HTMLDivElement).className = "ocultar"; 
     }
 
     //Muestra la sección  de editar y actualizar recompensas
     mostrarSeccion(){
       (document.getElementById('clases') as HTMLDivElement).className = "mostrar";
+      (document.getElementById('container') as HTMLDivElement).className = "ocultar";
+    }
+
+    ocultarSeccion2(){
+      (document.getElementById('agregar') as HTMLDivElement).className = "ocultar"; 
+      this.ocultarSeccion();
+    }
+    mostrarSeccion2(){ 
+      (document.getElementById('agregar') as HTMLDivElement).className = "mostrar"; 
+      (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
+      
       (document.getElementById('container') as HTMLDivElement).className = "ocultar";
     }
 
@@ -151,6 +167,11 @@ export class RecompensasPage implements OnInit {
       this.descripcion_recompensaReceptor = (document.getElementById('descripcion')as HTMLIonInputElement).value = "";
       this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonInputElement).value = "";
       this.nombre_recompensaReceptor = (document.getElementById('nombre_recompensaReceptor')as HTMLIonInputElement).value = "";
+      //***** ******//
+      this.nombre_recompensaAgregar = (document.getElementById('nombre_recompensaAgregar')as HTMLTextAreaElement).value="";
+      this.puntosAgregar = (document.getElementById('puntosAgregar')as HTMLTextAreaElement).value="";
+      this.imagenUrlAgregar = (document.getElementById('imagenUrlAgregar')as HTMLTextAreaElement).value="";
+      this.descripcionAgregar = (document.getElementById('descripcionAgregar')as HTMLTextAreaElement).value="";
 
     }
 
@@ -168,7 +189,7 @@ export class RecompensasPage implements OnInit {
         //   console.log(this.descripcion_recompensaReceptor );
 
 
-       let resultado=   window.confirm('Estas seguro de que desea modificacer la recompensa No. ?' + this.cod_recompensaReceptor );
+       let resultado=   window.confirm('Estas seguro de que desea modificacer : ' + this.nombre_recompensaReceptor + "  ?");
             if (resultado === true) {
               this.servicio.actualizarRecompensas( this.cod_recompensaReceptor,   this.puntosReceptor,  this.nombre_recompensaReceptor,  this.imagenUrlReceptor,  this.descripcion_recompensaReceptor)
               .subscribe(
@@ -183,6 +204,61 @@ export class RecompensasPage implements OnInit {
                 window.alert('Intenelo más tarde');
             }
       }
+
+      eliminarRecompensa(){
+        
+        // this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonLabelElement).textContent;
+        console.log(this.cod_recompensaReceptor);
+        
+
+        let resultado=   window.confirm('Estas seguro de que desea eliminar : ' + this.nombre_recompensaReceptor + "  ?");
+        if (resultado === true) {
+          this.servicio.eliminarRecompensas( this.cod_recompensaReceptor)
+          .subscribe(
+            (data)=>{this.recompensas = data;},
+            (error)=>{console.log(error);}
+          )
+          alert('Eliminación Exitosa');
+          document.getElementById("cargar").click();
+          this.ocultarSeccion();
+            
+        } else { 
+            // window.alert('Intenelo más tarde');
+        }
+ 
+      }
+      
+      agregarRecompensa(){
+        this.nombre_recompensaAgregar = (document.getElementById('nombre_recompensaAgregar')as HTMLTextAreaElement).value;
+        this.puntosAgregar = (document.getElementById('puntosAgregar')as HTMLTextAreaElement).value;
+        this.imagenUrlAgregar = (document.getElementById('imagenUrlAgregar')as HTMLTextAreaElement).value;
+        this.descripcionAgregar = (document.getElementById('descripcionAgregar')as HTMLTextAreaElement).value;
+
+        //confirmar si hay campos vacíos
+
+        if (this.nombre_recompensaAgregar =="" || this.puntosAgregar =="" || this.imagenUrlAgregar=="" || this.descripcionAgregar==""){
+        alert('Llene todos los campos');
+        }
+        else{
+
+          console.log(this.imagenUrlAgregar);
+          
+          this.servicio.agregarRecompensas( this.nombre_recompensaAgregar, this.puntosAgregar, this.imagenUrlAgregar, this.descripcionAgregar)
+          .subscribe(
+            (data)=>{this.recompensas = data;},
+            (error)=>{console.log(error);}
+          )
+          this.vaciarElementos();
+          alert('Registro Exitoso');
+
+
+          document.getElementById("cargar").click();
+          this.ocultarSeccion();
+        }
+        document.getElementById("cargar").click();
+      }
+
+
 
     llenarDatos(i){
       //Mostramos La sección para editar o eliminar
@@ -204,7 +280,6 @@ export class RecompensasPage implements OnInit {
       this.nombre_recompensa = ((document.getElementById('nombre_recompensa' +i) as HTMLIonLabelElement).textContent);
       this.descripcion_recompensa = ((document.getElementById('descripcion' +i) as HTMLIonLabelElement).textContent);
 
-      console.log(this.descripcion_recompensa);
  
 
       this.puntosReceptor = (document.getElementById('puntosReceptor')as HTMLIonInputElement).value = this.puntos;
