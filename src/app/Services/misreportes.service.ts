@@ -33,6 +33,11 @@ obtenerFoto(cod_reporte:number){
     return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/EliminarReporte?cod_reporte='+cod_reporte+"");
   }
 
+  actualizarReporte(cod_reporte:any){
+    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ActualizarReporte?cod_reporte='+cod_reporte+"");
+  }
+
+
 
 
 }

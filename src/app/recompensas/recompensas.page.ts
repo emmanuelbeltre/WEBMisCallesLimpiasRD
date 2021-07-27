@@ -133,7 +133,7 @@ export class RecompensasPage implements OnInit {
     ocultarSeccion(){
       this.vaciarElementos();
       (document.getElementById('clases') as HTMLDivElement).className = "ocultar";
-      (document.getElementById('container') as HTMLDivElement).className = "mostrar"; 
+      (document.getElementById('container') as HTMLDivElement).className = "recompensas mostrar"; 
       
       (document.getElementById('agregar') as HTMLDivElement).className = "ocultar"; 
     }
@@ -141,7 +141,7 @@ export class RecompensasPage implements OnInit {
     //Muestra la sección  de editar y actualizar recompensas
     mostrarSeccion(){
       (document.getElementById('clases') as HTMLDivElement).className = "mostrar";
-      (document.getElementById('container') as HTMLDivElement).className = "ocultar";
+      (document.getElementById('container') as HTMLDivElement).className = "recompensas ocultar";
     }
 
     ocultarSeccion2(){

@@ -22,34 +22,36 @@
 
     <div id="container" class="recompensas">
         <!-- Obtenemos todos los artículos disponibles recorriendo la bd con un ciclo foor -->
-        <ion-card *ngFor="let recompensa of recompensas;  let i = index">
-            <ion-card-header>
-                <!-- llamamos al nombre de la recompensa -->
-                <ion-card-title>
-                    <ion-label id="{{'cod_recompensas' + i}}">{{recompensa.cod_recompensa}} </ion-label>
-                    <ion-label id="{{'nombre_recompensa' + i}}">{{recompensa.nombre}}</ion-label>
-                </ion-card-title>
+        <ion-card class="recompensas--articulos" *ngFor="let recompensa of recompensas;  let i = index">
+            <div class="editar">
+                <ion-card-header>
+                    <!-- llamamos al nombre de la recompensa -->
+                    <ion-card-title>
+                        <ion-label class="ocultar" id="{{'cod_recompensas' + i}}">{{recompensa.cod_recompensa}} </ion-label>
+                        <ion-label id="{{'nombre_recompensa' + i}}">{{recompensa.nombre}}</ion-label>
+                    </ion-card-title>
 
-            </ion-card-header>
-            <ion-card-content>
-                <img src={{recompensa.imagen}} style="width: 150px; height: 150px;">
-                <ion-label class="ocultar" id="{{'imagen' + i}}"> {{recompensa.imagen}} </ion-label>
-                <br>
-                <br>
-                <ion-list>
-                    <ion-item>
-                        <ion-label color="warning" id="{{'puntosArticulo' + i}}">{{recompensa.puntos}}</ion-label>
-                        <label slot="start" class="centrarlabel"> Puntos</label>
-                    </ion-item>
-                </ion-list>
-                <br>
-                <label class="centrarlabel"><b>Descripcion:</b> </label>
+                </ion-card-header>
+                <ion-card-content>
+                    <img src={{recompensa.imagen}} style="width: 150px; height: 150px;">
+                    <ion-label class="ocultar" id="{{'imagen' + i}}"> {{recompensa.imagen}} </ion-label>
+                    <br>
+                    <br>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label color="warning" id="{{'puntosArticulo' + i}}">{{recompensa.puntos}}</ion-label>
+                            <label slot="start" class="centrarlabel"> Puntos</label>
+                        </ion-item>
+                    </ion-list>
+                    <br>
+                    <label class="centrarlabel"><b>Descripcion:</b> </label>
 
-                <label id="{{'descripcion' + i}}" class="centrarlabel"> {{recompensa.descripcion}}</label>
-                <br>
-                <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Eliminar Recompensa</ion-button>
-            </ion-card-content>
-            <ion-input [disabled]="buttonDisabled"></ion-input>
+                    <label id="{{'descripcion' + i}}" class="centrarlabel"> {{recompensa.descripcion}}</label>
+                    <br>
+                    <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Eliminar Recompensa</ion-button>
+                </ion-card-content>
+                <ion-input [disabled]="buttonDisabled"></ion-input>
+            </div>
         </ion-card>
 
 

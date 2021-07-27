@@ -39,3 +39,13 @@ textarea {
         text-transform: inherit;
     }
 }
+
+.recompensas {
+    @include grid(2, 0);
+    @include desktop {
+        @include grid(3, 0);
+    }
+    .recompensas--articulos {
+        width: 95%;
+    }
+}

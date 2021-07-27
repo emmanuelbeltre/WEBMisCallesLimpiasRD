@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nunito:wght@300;400;700;900&display=swap');
 // Fuentes
-$fuente_principal: 'Nunito', sans-serif;
+$fuente_principal: 'Nunito',
+sans-serif;
 // Tamaño de Media Queries
 $telefono: 480px;
 $tablet: 600px;
@@ -8,7 +9,7 @@ $desktop: 1024px;
 // Colores
 $negro: #000000;
 $amarillo: #E08709;
-$marron:#b63616 ;
+$marron:#b63616;
 $verde: #71B100;
 $blanco: #FFFFFF;
 $gris: #e1e1e1;

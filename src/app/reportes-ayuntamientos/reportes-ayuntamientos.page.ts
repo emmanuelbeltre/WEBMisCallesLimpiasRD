@@ -88,13 +88,33 @@ ngOnInit() {
    procesarReporte(i){
       /// Obtenemos el id del código del usuario que hizo el reporte  de forma dinámica
     this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);
-    console.log(this.cod_usuario);
-    this.puntos_reporte = 10;   
+
+  
+    this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
+    this.cod_reporte =((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
+    console.log(this.cod_reporte);
+    if (confirm('¿Está seguro que desea procesar el reporte número :'+ this.cod_reporte + ',   con la ubicación de :' + this.ubicacion)){
+      
+      this.puntos_reporte = 10;   
       this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
       .subscribe(
         (data)=>{this.reportes = data;},
         (error)=>{console.log(error);}
       )
+
+      this.servicio.actualizarReporte(this.cod_reporte) .subscribe(
+        (data)=>{this.reportes = data;},
+        (error)=>{console.log(error);}
+      )
+  
+    this.cargarReportes();
+    
+     }
+   else{
+     alert('cancelado');
+     return;
+   }
+   this.cargarReportes();
    }
 
   
