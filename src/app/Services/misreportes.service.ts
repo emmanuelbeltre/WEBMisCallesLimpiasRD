@@ -15,7 +15,7 @@ export class MisreportesService {
   }
 
   obtenerMisReportesEmpresas(){
-    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
+    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
   }
 
 
@@ -30,11 +30,11 @@ obtenerFoto(cod_reporte:number){
 // }
 
   eliminarReporte(cod_reporte:any){
-    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/EliminarReporte?cod_reporte='+cod_reporte+"");
+    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/EliminarReporte?cod_reporte='+cod_reporte+"");
   }
 
   actualizarReporte(cod_reporte:any){
-    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ActualizarReporte?cod_reporte='+cod_reporte+"");
+    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ActualizarReporte?cod_reporte='+cod_reporte+"");
   }
 
 
