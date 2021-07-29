@@ -23,6 +23,9 @@
     <div id="container" class="recompensas">
         <!-- Obtenemos todos los artículos disponibles recorriendo la bd con un ciclo foor -->
         <ion-card class="recompensas--articulos" *ngFor="let recompensa of recompensas;  let i = index">
+            <div *ngIf="recompensa.cod_recompensa === 0">
+                <ion-button id="{{'editarEliminar' + i}}" (click)="mostrarSeccion2();"> Agregar Recompensa</ion-button>
+            </div>
             <div class="editar">
                 <ion-card-header>
                     <!-- llamamos al nombre de la recompensa -->
