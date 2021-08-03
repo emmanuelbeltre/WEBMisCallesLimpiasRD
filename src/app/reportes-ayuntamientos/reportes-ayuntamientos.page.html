@@ -18,9 +18,7 @@
         <ion-label class="ubicacion">
             Ubicación
         </ion-label>
-        <ion-label class="codigo">
-            Código
-        </ion-label>
+
         <ion-label class="botones--procesar--cancelar">
             ---
         </ion-label>
@@ -32,10 +30,10 @@
     <ion-list class="reportes" *ngFor="let reporte of reportes; let i = index">
 
         <ion-item button detail="false">
-
-            <img src="assets/imagenes/basura.png" class="imagen">
-
-
+            <div class="">
+                <img src="assets/imagenes/basura.png" class="imagen">
+                <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label>
+            </div>
 
             <div class="reportes--datos" (click)="showAlert(i)">
                 <!-- <ion-label>&nbsp;<strong>#: {{reporte.cod_reporte}}&nbsp;</strong> </ion-label>  -->
@@ -43,10 +41,13 @@
                 <ion-label class="reportes--datos--ubicacion" id="{{'cod_reportessssss' + i}}"> </ion-label>
                 <div class="reportes--datos__latlong">
                     <ion-label>&nbsp;Latitud & Lngitud:</ion-label>
-                    <ion-label id="{{'ubicacion' + i}}" style="color: #569CD6;">&nbsp;{{reporte.lat}}, {{reporte.lng}}</ion-label>
+                    <ion-label id="{{'ubicacion' + i}}" style="color: #569CD6;">&nbsp;{{reporte.lat}}, {{reporte.lng}}
+                        <p>{{reporte.ubicacion}}</p>
+                    </ion-label>
+
                 </div>
 
-                <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label>
+                <!-- <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label> -->
 
                 <ion-label class="cod_usuario" id="{{'cod_usuario' + i}}"> {{reporte.cod_usuario}} </ion-label>
 

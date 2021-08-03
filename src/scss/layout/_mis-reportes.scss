@@ -55,10 +55,13 @@
                 width: auto;
                 margin: auto;
                 text-align: end;
-                margin-left: 20%;
+                // margin-left: 20%;
                 @include tablet {
-                    margin-left: 20%;
+                    margin-left: 10%;
                 }
+            }
+            .botones--Reporte {
+                width: 1rem;
             }
             .reportes--datos__codigo {
                 width: auto;
@@ -69,3 +72,25 @@
         }
     }
 }
+
+// .reportes {
+//     .imagen-codigo {
+//         .imagen {}
+//     }
+//     .reportes--datos {
+//         margin-left: 2rem;
+//         p {
+//             margin: 0;
+//             font-size: 1.4rem;
+//             font-weight: $bold !important;
+//             color: $negro !important;
+//         }
+//         ion-label {
+//             font-weight: $bold;
+//             color: $negro;
+//         }
+//         .lat_long {
+//             color: rgb(103, 132, 221) !important;
+//         }
+//     }
+// }

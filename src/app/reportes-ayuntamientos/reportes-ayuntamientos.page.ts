@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Variableglobal } from '../variableglobal';
 import {RegistroService} from '../Services/registro.service';
 import {MispuntosService} from '../Services/mispuntos.service'
+import {MensajeriaService} from '../Services/mensajeria.service'
 
 @Component({
   selector: 'app-reportes-ayuntamientos',
@@ -17,6 +18,7 @@ export class ReportesAyuntamientosPage implements OnInit {
   ubicacion:any;
   puntos_reporte: any;
   reportes: any;
+  Mensajes:any;
   public niveles:any;
   public datos:any;
 
@@ -26,7 +28,8 @@ export class ReportesAyuntamientosPage implements OnInit {
     public alertController: AlertController, 
     public nivelUsuario: RegistroService,
     public servicio:MisreportesService,
-    public servicioPuntos: MispuntosService ) { 
+    public servicioPuntos: MispuntosService,
+    public Mensajeria: MensajeriaService ) { 
     this.cod_usuario = Variableglobal.cod_usuario;
 }
 
@@ -69,7 +72,15 @@ ngOnInit() {
   this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
 
 
-   if (confirm('¿Está seguro que desea cancelar el reporte número :'+ this.cod_reporte + ',  y con la ubicación de :' + this.ubicacion)){
+   if (confirm('¿Está seguro que desea cancelar el reporte con el código No: '+ this.cod_reporte )){
+
+    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+    this.Mensajes = "Se ha cancelado el reporte realizado con el código No:" + this.cod_reporte ;
+    this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
+    .subscribe( 
+      (data)=>{this.Mensajes = data;},
+      (error)=>{console.log(error);}
+    )
     this.servicio.eliminarReporte(this.cod_reporte).subscribe((data)=>
     {this.reportes = data;},
       (error)=>{console.log(error);}
@@ -93,7 +104,7 @@ ngOnInit() {
     this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
     this.cod_reporte =((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
     console.log(this.cod_reporte);
-    if (confirm('¿Está seguro que desea procesar el reporte número :'+ this.cod_reporte + ',   con la ubicación de :' + this.ubicacion)){
+    if (confirm('¿Está seguro que desea procesar el reporte código número: '+ this.cod_reporte)){
       
       this.puntos_reporte = 10;   
       this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
@@ -108,7 +119,15 @@ ngOnInit() {
       )
   
     this.cargarReportes();
-    
+    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+      this.Mensajes = ('Se ha aprovado su reporte con el código No:' + this.cod_reporte);
+
+    this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
+    .subscribe( 
+      (data)=>{this.Mensajes = data;},
+      (error)=>{console.log(error);}
+    )
+        this.cargarReportes();
      }
    else{
      alert('cancelado');

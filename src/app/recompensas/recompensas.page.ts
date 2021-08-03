@@ -206,11 +206,6 @@ export class RecompensasPage implements OnInit {
       }
 
       eliminarRecompensa(){
-        
-        // this.cod_recompensaReceptor = (document.getElementById('cod_recompensaReceptor')as HTMLIonLabelElement).textContent;
-        console.log(this.cod_recompensaReceptor);
-        
-
         let resultado=   window.confirm('Estas seguro de que desea eliminar : ' + this.nombre_recompensaReceptor + "  ?");
         if (resultado === true) {
           this.servicio.eliminarRecompensas( this.cod_recompensaReceptor)
@@ -227,6 +222,25 @@ export class RecompensasPage implements OnInit {
         }
  
       }
+
+
+      desactivarRecompensa(){
+
+        let resultado=   window.confirm('Estas seguro de que desea desactivar : ' + this.nombre_recompensaReceptor + "  ? ¡Una ves desactivada no podrá activarla nuevamente!");
+        if (resultado === true) {
+          this.servicio.desactivarRecompensas( this.cod_recompensaReceptor)
+          .subscribe(
+            (data)=>{this.recompensas = data;},
+            (error)=>{console.log(error);}
+          )
+          alert('Se ha desactivado la recomepnsa');
+          document.getElementById("cargar").click();
+          this.ocultarSeccion();
+            
+        } else { 
+            // window.alert('Intenelo más tarde');
+        }
+      }
       
       agregarRecompensa(){
         this.nombre_recompensaAgregar = (document.getElementById('nombre_recompensaAgregar')as HTMLTextAreaElement).value;
@@ -240,8 +254,6 @@ export class RecompensasPage implements OnInit {
         alert('Llene todos los campos');
         }
         else{
-
-          console.log(this.imagenUrlAgregar);
           
           this.servicio.agregarRecompensas( this.nombre_recompensaAgregar, this.puntosAgregar, this.imagenUrlAgregar, this.descripcionAgregar)
           .subscribe(
@@ -262,6 +274,7 @@ export class RecompensasPage implements OnInit {
 
     llenarDatos(i){
       //Mostramos La sección para editar o eliminar
+      this.vaciarElementos();
       this.mostrarSeccion();
      
       //Dirigimos la pantalla a esa zona

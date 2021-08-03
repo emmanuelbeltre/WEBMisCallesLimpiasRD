@@ -19,6 +19,6 @@ export class MispuntosService {
 
 
 ProcesarOrden(cod_usuario: any, puntos_reportes: any){
-  return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ProcesarOrden?cod_usuario='+ cod_usuario+'&puntosacumulados=' + puntos_reportes);
+  return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ProcesarOrden?cod_usuario='+ cod_usuario+'&puntosacumulados=' + puntos_reportes);
 }
 }

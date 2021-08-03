@@ -51,7 +51,7 @@
 
                     <label id="{{'descripcion' + i}}" class="centrarlabel"> {{recompensa.descripcion}}</label>
                     <br>
-                    <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Eliminar Recompensa</ion-button>
+                    <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Agregar / Desactivar</ion-button>
                 </ion-card-content>
                 <ion-input [disabled]="buttonDisabled"></ion-input>
             </div>
@@ -65,7 +65,7 @@
         <div id="clases" class="ocultar">
             <ion-card-header>
                 <ion-card-title>
-                    <ion-title size="large">Editar o Eliminar</ion-title>
+                    <ion-title size="large">Editar o Desactivar</ion-title>
                 </ion-card-title>
             </ion-card-header>
 
@@ -86,12 +86,15 @@
             <textarea id="descripcion" name="story" rows="5" cols="33"></textarea>
 
             <br><br>
+            <ion-button color="success" (click)="mostrarSeccion2();">Nuevo</ion-button>
             <ion-button (click)="ActualizarRecompensa();">Editar</ion-button>
-            <ion-button color="warning" (click)="eliminarRecompensa();">Eliminar</ion-button>
+            <!-- <ion-button color="warning" (click)="eliminarRecompensa();">Eliminar</ion-button> -->
+
+            <ion-button color="warning" (click)="desactivarRecompensa();">Desactivar</ion-button>
             <ion-button color="danger" (click)="ocultarSeccion();">Cancelar</ion-button>
 
 
-            <ion-button color="success" (click)="mostrarSeccion2();">Nuevo</ion-button>
+
         </div>
     </ion-card>
 

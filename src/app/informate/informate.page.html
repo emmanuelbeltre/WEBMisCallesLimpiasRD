@@ -15,20 +15,90 @@
     </ion-header>
 
     <ion-content>
+        <div id="container">
+            <ion-card class="container" *ngFor="let posteducacional of posteducacionales;  let i = index">
+                <ion-card-header>
+                    <ion-card-title size="small" id="{{'titulo' + i}}"><b>{{posteducacional.titulo}}</b></ion-card-title>
+                    <label class="ocultar" size="small" id="{{'cod_post' + i}}">{{posteducacional.cod_post}}</label>
+                </ion-card-header>
 
-        <ion-card *ngFor="let posteducacional of posteducacionales">
-            <ion-card-header>
-                <ion-card-title size="small"><b>{{posteducacional.titulo}}</b></ion-card-title>
-            </ion-card-header>
+                <ion-card-content>
+                    <img src={{posteducacional.imagen}}><br>
+                    <ion-label class="centrarlabel" id="{{'descripcion' + i}}">{{posteducacional.descripcion}}</ion-label>
 
-            <ion-card-content>
-                <img src={{posteducacional.imagen}}>
-                <ion-label class="centrarlabel">{{posteducacional.descripcion}}</ion-label>
+
+                    <!-- Obtenemos la la url de la imagen y le damos la clase de ocultar para que no se muestre en la WEB -->
+                    <label class="ocultar" size="small" id="{{'imagen' + i}}">{{posteducacional.imagen}}</label>
+                    <br>
+                    <br>
+                    <label style="font-size: small;"><b>{{posteducacional.fecha}}</b></label>
+
+                </ion-card-content>
+                <ion-button id="{{'editarEliminar' + i}}" (click)="llenarDatos(i);">Editar / Agregar / Desactivar</ion-button>
+
+
+            </ion-card>
+
+        </div>
+
+
+        <ion-card>
+            <div id="seccion1" class="ocultar">
+                <ion-card-header>
+                    <ion-card-title>
+                        <ion-title size="large">Editar o Eliminar</ion-title>
+                    </ion-card-title>
+                </ion-card-header>
+
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Código :
+                    <ion-label id="cod_post_llenar"></ion-label>
+                </ion-label>
+                <br><br>
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">Título</ion-label> <br>
+                <textarea class="textArea" name="story" rows="5" cols="33" placeholder="Título de la publicación" id="titulo_llenar"></textarea> <br>
+                <label for="story">Descripcion del de la publicación:</label>
                 <br>
+                <textarea id="descripcion_llenar" name="story" rows="5" cols="33" placeholder="Descripción"></textarea> <br>
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Imagen</ion-label> <br>
+                <textarea class="textArea" name="story" rows="5" cols="33" placeholder="URL Imagen" id="imagen_llenar"></textarea><br>
+
+                <br><br>
+                <ion-button color="success" (click)="ocultarSeccion2();">Nuevo</ion-button>
+                <ion-button (click)="editarPost();">Editar</ion-button>
+                <!-- <ion-button color="warning" (click)="eliminarRecompensa();">Eliminar</ion-button> -->
+
+                <ion-button color="warning" (click)="eliminarPost();">Eliminar</ion-button>
+                <ion-button color="danger" (click)="cancelar();">Cancelar</ion-button>
+
+
+
+            </div>
+
+            <div id="seccion2" class="ocultar">
+                <ion-card-header>
+                    <ion-card-title>
+                        <ion-title size="large">Agregar</ion-title>
+                    </ion-card-title>
+                </ion-card-header>
+                <!-- 
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px;">Código :
+                    <ion-label id="cod_post_llenar"></ion-label>
+                </ion-label> -->
+                <br><br>
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">Título</ion-label> <br>
+                <textarea class="textArea" name="story" rows="5" cols="33" placeholder="Título de la publicación" id="titulo_agregar"></textarea> <br>
+                <label for="story">Descripcion del de la publicación:</label>
                 <br>
-                <label style="font-size: small;"><b>{{posteducacional.fecha}}</b></label>
-            </ion-card-content>
+                <textarea id="descripcion_agregar" name="story" rows="5" cols="33" placeholder="Descripción"></textarea> <br>
+                <ion-label style="font-size: 14px; margin-top: 10px; margin-left: 5px; ">URL de la Imagen</ion-label> <br>
+                <textarea class="textArea" name="story" rows="5" cols="33" placeholder="URL Imagen" id="imagen_agregar"></textarea><br>
+
+                <br><br>
+                <ion-button color="success" (click)="agregarPost();">Guardar</ion-button>
+                <ion-button color="danger" (click)="cancelar();">Cancelar</ion-button>
 
 
+
+            </div>
         </ion-card>
     </ion-content>
