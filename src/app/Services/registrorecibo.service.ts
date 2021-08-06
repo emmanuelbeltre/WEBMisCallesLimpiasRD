@@ -19,4 +19,9 @@ export class RegistroReciboService {
     
   }
 
+  MostrarRecibosPorID(nuevoformatocodigobono:any){
+    return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/consultarrecibosporsuidrecibo?cod_recibo="+nuevoformatocodigobono+"");
+    
+  }
+
 }

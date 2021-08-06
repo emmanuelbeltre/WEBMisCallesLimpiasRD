@@ -17,25 +17,28 @@
             <ion-title size="large">Mis Bonos</ion-title>
         </ion-toolbar>
     </ion-header>
-    <ion-list>
 
-        <ion-item *ngFor="let recibo of Recibos" [routerLink]="['/recompensas']">
+
+
+    <ion-list *ngFor="let recibo of Recibos; let i = index" button detail="false">
+
+        <ion-item (click)="showAlert(i)" button detail="false">
 
 
             <ion-avatar class="aa" slot="start">
                 <img class="bb" [src]="recibo.imagen">
             </ion-avatar>
-            <ion-label class="contenedor-recibos--label">
+            <ion-label id="{{'nombreproducto' + i}}" class="contenedor-recibos--label">
                 {{recibo.nombre}}
             </ion-label>
 
             <div class="contenedor-recibos--label contenedor-recibos--label__codigo">
-                <ion-label slot="end">
+                <ion-label id="{{'cod_bono' + i}}" slot="end">
                     Recibo No.{{recibo.cod_recibo}}
                 </ion-label>
 
             </div>
-
+           
         </ion-item>
 
     </ion-list>

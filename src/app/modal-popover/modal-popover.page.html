@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Recibo </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <label>
+          <ion-datetime style="text-align: right;" displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+        </label>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col text-center>
+        <img style="width: 120px;;margin:auto;display:block" src="assets/imagenes/MisCallesLimpiasRDCircle.png">
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="text-align: center;">
+      <ion-col text-center>
+        <label style="text-align: center; font-weight: bold;">
+          Mis Calles Limpias RD
+        </label>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col text-center>
+        {{ cod_bono }}
+      </ion-col>
+    </ion-row>
+    
+   
+    <ion-row>
+      <ion-col text-center>
+        Fecha Creacion: {{ fechaCompleta }}
+      </ion-col>
+    </ion-row>
+    
+
+    <ion-row>
+      <ion-col text-center>
+        Usuario: {{ usuario }}
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col text-center>
+        Correo del usuario: {{ correo_usuario }}
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col text-center>
+        Cedula: {{ cedula_usuario }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        Telefono: {{ telefono_Usuario }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        Cod Usuario: {{ cod_usuarioreporte }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        Producto: {{ nombreproducto }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <p style="text-align: center; font-size: 16px;">
+          Gracias por utilizar Mis Calles Limpias RD.
+        </p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button expand="block"  (click)="close()" style="font-weight: bold;">CERRAR</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>
