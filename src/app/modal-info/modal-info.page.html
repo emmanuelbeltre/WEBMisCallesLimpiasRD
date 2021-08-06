@@ -1,36 +1,44 @@
 <ion-header no-border>
     <ion-toolbar>
-        <ion-title text-capitalize> {{usuario}}</ion-title>
+        <ion-title text-capitalize>Datos de Reportes</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="contenedor-modal">
     <!-- <ion-list *ngFor="let usuario of usuarios; let i = index"> -->
 
-    <ion-list>
-        <ion-label>
-            Cod Usuario: {{cod_usuario}}
-        </ion-label>
-        <br>
-        <ion-label>
-            cod reporte:{{cod_reporte}}
-        </ion-label>
-        <br>
-        <ion-label>
-            Cedula: {{cedula}}
-        </ion-label>
-        <br>
-        <ion-label>
-            correo: {{correo}}
-        </ion-label>
-        <br>
-        <ion-label>
-            Teléfono: {{telefono}}
-        </ion-label>
-        <br>
-        <ion-label>
-            Usuario: {{usuario}}
-        </ion-label>
+    <ion-list class="modal--logo">
+        <div class="modal--logo">
+            <img src="../../assets/imagenes/MisCallesLimpiasRDCircle.png" alt="">
+            <p>Mis Calles Limpias RD</p>
+        </div>
+
+        <div class="modal--datos">
+
+            <ion-label>
+                Cod Usuario: {{cod_usuario}}
+            </ion-label>
+
+            <ion-label>
+                cod reporte:{{cod_reporte}}
+            </ion-label>
+
+            <ion-label>
+                Cedula: {{cedula}}
+            </ion-label>
+
+            <ion-label>
+                correo: {{correo}}
+            </ion-label>
+
+
+            <ion-label id="telefono">{{telefono}}
+            </ion-label>
+
+            <ion-label>
+                Usuario: {{usuario}}
+            </ion-label>
+        </div>
 
     </ion-list>
 
@@ -38,16 +46,19 @@
         Cerrar
     </ion-button>
 
-    <img style="max-height: 400px ;" src="{{imagen}}" alt="Imagen Residuos" height="" width="">
+    <img style="max-height: 400px ; min-height: 200px;" src="{{imagen}}" alt="Imagen Residuos" height="" width="">
+
+
     <br>
 
     <br>
+
     <div>
-        <ion-button id="{{'boton_cancelar' + i}}" color="warning" (click)="cancelarReporte(i);">
+        <ion-button id="{{'boton_cancelar' + i}}" color="warning" (click)="cancelarReporte();">
             <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
             Cancelar
         </ion-button>
-        <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
+        <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte();">
             <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
             Procesar
         </ion-button>

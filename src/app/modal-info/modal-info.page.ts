@@ -15,6 +15,7 @@ export class ModalInfoPage implements OnInit {
   constructor(private modlCtrl: ModalController,
     public Datos: DatosnecesarioService) { }
     cod_usuario:any;
+    telefono:any;
     
 
   ngOnInit() {
@@ -34,11 +35,12 @@ export class ModalInfoPage implements OnInit {
   }
 
     mostrarDatos(){
-    
-      // this.Datos.DatosUsuario(1).subscribe((data)=>
-      // {this.usuarios = data;},
-      //   (error)=>{console.log(error);}
-      // )
+    this.telefono= (document.getElementById('telefono') as HTMLIonLabelElement).textContent;
+    console.log(this.telefono)
     }
+
+
+
+    
 
 }
