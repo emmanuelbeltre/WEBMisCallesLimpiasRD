@@ -1,0 +1,80 @@
+<app-header>
+
+</app-header>
+
+<ion-content class="contenedor--reportes">
+    <!-- <ion-button expand="full" (click)="abrirModal()">
+        Abrir Modal
+    </ion-button> -->
+    <!-- <img  [src]="currentImage" *ngIf="currentImage"> -->
+    <ion-item class="reportes-header">
+        <ion-label>
+            ---
+        </ion-label>
+        <ion-label class="ubicacion">
+            Ubicación
+        </ion-label>
+
+        <ion-label class="botones--procesar--cancelar">
+            ---
+        </ion-label>
+    </ion-item>
+    <ion-button id="{{'cargar'}}" color="success" (click)="cargarReportes();">
+        <ion-icon name="arrow-down-outline" slot="start"></ion-icon>
+        Cargar
+    </ion-button>
+    <ion-list class="reportes" *ngFor="let reporte of reportes; let i = index">
+
+        <ion-item button detail="false">
+            <div class="">
+                <img src="assets/imagenes/basura.png" class="imagen">
+                <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label>
+
+            </div>
+
+            <div class="reportes--datos" (click)="showAlert(i)">
+                <!-- <ion-label>&nbsp;<strong>#: {{reporte.cod_reporte}}&nbsp;</strong> </ion-label>  -->
+                <!-- <ion-label>&nbsp;{{reporte.ubicacion}}</ion-label> -->
+                <ion-label class="reportes--datos--ubicacion" id="{{'cod_reportessssss' + i}}"> </ion-label>
+                <div class="reportes--datos__latlong">
+                    <ion-label>&nbsp;Latitud & Lngitud:</ion-label>
+                    <ion-label id="{{'ubicacion' + i}}" style="color: #569CD6;">&nbsp;{{reporte.lat}}, {{reporte.lng}}
+                        <p>{{reporte.ubicacion}}</p>
+                    </ion-label>
+
+                </div>
+
+                <!-- <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label> -->
+
+                <ion-label class="cod_usuario" id="{{'cod_usuario' + i}}"> {{reporte.cod_usuario}} </ion-label>
+
+
+            </div>
+
+            <div>
+                <ion-button id="{{'boton_cancelar' + i}}" color="warning" (click)="cancelarReporte(i);">
+                    <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
+                    Cancelar
+                </ion-button>
+                <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
+                    <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
+                    Procesar
+                </ion-button>
+            </div>
+        </ion-item>
+        <ion-label id="{{'usuario' + i}}" class="ocultar"> {{reporte.usuario}} </ion-label>
+        <ion-label id="{{'correo' + i}}" class="ocultar"> {{reporte.correo_Usuario}} </ion-label>
+        <ion-label id="{{'cedula' + i}}" class="ocultar"> {{reporte.cedula_usuario}} </ion-label>
+        <ion-label id="{{'telefono' + i}}" class="ocultar"> {{reporte.telefono_Usuario}} </ion-label>
+
+    </ion-list>
+
+
+    <!-- <ion-list *ngFor="let usuario of usuarios; let i = index">
+        <ion-item>
+            {{usuario.correo_Usuario}}
+        </ion-item>
+    </ion-list> -->
+
+
+</ion-content>

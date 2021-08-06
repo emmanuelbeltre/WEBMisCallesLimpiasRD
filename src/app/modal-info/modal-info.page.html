@@ -1,0 +1,63 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title text-capitalize> {{usuario}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenedor-modal">
+    <!-- <ion-list *ngFor="let usuario of usuarios; let i = index"> -->
+
+    <ion-list>
+        <ion-label>
+            Cod Usuario: {{cod_usuario}}
+        </ion-label>
+        <br>
+        <ion-label>
+            cod reporte:{{cod_reporte}}
+        </ion-label>
+        <br>
+        <ion-label>
+            Cedula: {{cedula}}
+        </ion-label>
+        <br>
+        <ion-label>
+            correo: {{correo}}
+        </ion-label>
+        <br>
+        <ion-label>
+            Teléfono: {{telefono}}
+        </ion-label>
+        <br>
+        <ion-label>
+            Usuario: {{usuario}}
+        </ion-label>
+
+    </ion-list>
+
+    <ion-button color="secondary" expand="full" (click)="salirConArgumentos()">
+        Cerrar
+    </ion-button>
+
+    <img style="max-height: 400px ;" src="{{imagen}}" alt="Imagen Residuos" height="" width="">
+    <br>
+
+    <br>
+    <div>
+        <ion-button id="{{'boton_cancelar' + i}}" color="warning" (click)="cancelarReporte(i);">
+            <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
+            Cancelar
+        </ion-button>
+        <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
+            <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
+            Procesar
+        </ion-button>
+    </div>
+    <!-- 
+    <ion-list *ngFor="let usuario of usuarios; let i = index">
+        <ion-item>
+            {{usuario.correo_Usuario}}
+        </ion-item>
+    </ion-list> -->
+
+
+</ion-content>

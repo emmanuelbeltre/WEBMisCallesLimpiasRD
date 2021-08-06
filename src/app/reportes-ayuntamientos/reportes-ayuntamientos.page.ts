@@ -5,7 +5,9 @@ import { AlertController } from '@ionic/angular';
 import { Variableglobal } from '../variableglobal';
 import {RegistroService} from '../Services/registro.service';
 import {MispuntosService} from '../Services/mispuntos.service'
-import {MensajeriaService} from '../Services/mensajeria.service'
+import {MensajeriaService} from '../Services/mensajeria.service';
+import { ModalController } from '@ionic/angular';
+// import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-reportes-ayuntamientos',
@@ -21,6 +23,7 @@ export class ReportesAyuntamientosPage implements OnInit {
   Mensajes:any;
   public niveles:any;
   public datos:any;
+  
 
   currentImage: any;
 
@@ -29,14 +32,25 @@ export class ReportesAyuntamientosPage implements OnInit {
     public nivelUsuario: RegistroService,
     public servicio:MisreportesService,
     public servicioPuntos: MispuntosService,
-    public Mensajeria: MensajeriaService ) { 
+    public Mensajeria: MensajeriaService,
+    public modalController: ModalController ) { 
     this.cod_usuario = Variableglobal.cod_usuario;
 }
 
 async ImgAlert() {
   const alert = await this.alertController.create({
+    // component: ModalPage,
     cssClass: 'my-custom-class',
-    message: `<img src="${this.currentImage}" alt="g-maps" style="border-radius: 2px">`,
+    message: `<div class="prueba6"><img src="${this.currentImage}" alt="g-maps" style="border-radius: 2px"><ion-button  color="warning" (click)="cancelarReporte(i);">
+    Cancelar
+    </ion-button>
+
+    <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
+    <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
+    Procesar
+</ion-button>
+    </div>`,
+    
     buttons: ['OK']
   });
   await alert.present();

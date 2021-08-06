@@ -15,7 +15,9 @@ export class MisreportesService {
   }
 
   obtenerMisReportesEmpresas(){
-    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
+    //return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
+
+    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
   }
 
 
