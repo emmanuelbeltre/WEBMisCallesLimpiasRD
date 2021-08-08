@@ -19,7 +19,10 @@ export class ModalPopoverPage implements OnInit {
   @Input() fechaCompleta: string;
   
   myDate: String = new Date().toISOString();
-
+  correo_usuario:any;
+  cedula_usuario: any;
+  telefono_Usuario:any;
+  cod_usuarioreporte:any;
 
   constructor(
     private modalCtr: ModalController,

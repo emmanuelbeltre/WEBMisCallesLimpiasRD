@@ -3,6 +3,7 @@ import { OlvidemicontrasenaService } from '../Services/olvidemicontrasena.servic
 import { AlertController } from '@ionic/angular';
 import { isNull } from '@angular/compiler/src/output/output_ast';
 import { empty } from 'rxjs';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-olvide-mi-contrasena',
@@ -16,6 +17,7 @@ export class OlvideMiContrasenaPage implements OnInit {
   email;
 
   constructor(
+    public menuCtrl: MenuController,
     public servicio:OlvidemicontrasenaService,
     public alertController: AlertController
   ) { }
@@ -64,7 +66,12 @@ export class OlvideMiContrasenaPage implements OnInit {
     await alert.present();
   }
 
+   
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+   }
 
+  
 
   onOlvideMiContrasena(){
 

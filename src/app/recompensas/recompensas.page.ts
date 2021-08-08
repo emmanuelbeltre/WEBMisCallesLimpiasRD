@@ -19,7 +19,7 @@ export class RecompensasPage implements OnInit {
   public datos:any;
   subscription: Subscription;
 
-
+  buttonDisabled:any;
   constructor(
     public servicio:RecompensasService, 
     public servicioPuntos: MispuntosService,

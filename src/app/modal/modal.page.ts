@@ -27,7 +27,7 @@ export class ModalPage implements OnInit {
   public datos:any;
   usuarios:any;
   
-
+  i:any;
   //Elementos modal
   usuario:any;
   correo:any;

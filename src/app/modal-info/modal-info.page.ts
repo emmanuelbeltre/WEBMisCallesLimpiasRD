@@ -12,6 +12,14 @@ export class ModalInfoPage implements OnInit {
   @Input() nombre;
   @Input() pais;
   usuarios:any;
+  cod_reporte:any;
+  usuario:any;
+  cancelarReporte:any;
+  cedula:any;
+  procesarReporte:any;
+  imagen:any;
+  i:any;
+  correo:any;
   constructor(private modlCtrl: ModalController,
     public Datos: DatosnecesarioService) { }
     cod_usuario:any;

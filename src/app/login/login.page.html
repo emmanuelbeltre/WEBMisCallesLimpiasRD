@@ -12,18 +12,18 @@
             <div class="login--inputs">
 
                 <ion-item>
-                    <ion-input placeholder="Usuario" maxlength="50" [(ngModel)]="usuario"></ion-input>
+                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="Usuario" maxlength="50" [(ngModel)]="usuario"></ion-input>
                 </ion-item>
                 <!-- Prueba -->
                 <ion-item>
-                    <ion-input placeholder="Contraseña" [type]="getType()" [(ngModel)]="clave"></ion-input>
+                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="Contraseña" [type]="getType()" [(ngModel)]="clave"></ion-input>
                     <ion-icon style="align-items: flex-end;" name="eye" (click)="toggleTextPassword()"></ion-icon>
                 </ion-item>
 
             </div>
 
-            <div class="login--contraseña">
-                <ion-label><a href="./olvide-mi-contrasena">¿Olvidaste tu contraseña?</a></ion-label>
+            <div style="margin-left: 250px;" class="login--contraseña">
+                <ion-label style="font-size: 14px;"><a href="./olvide-mi-contrasena">¿Olvidaste tu contraseña?</a></ion-label>
             </div>
 
             <div class="boton-login">

@@ -6,6 +6,7 @@ import { RegistroReporteService } from '../Services/registro-reporte.service';
 import { DatosnecesarioService } from '../Services/datosnecesario.service';
 import { LocationService } from '../Services/location.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { DatosInicioService } from '../Services/datos-inicio.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from "@angular/router"; 
 import {NavController, NavParams } from '@ionic/angular';
@@ -32,6 +33,10 @@ import { NgClass } from '@angular/common';
 })
 export class InicioMapaPage implements OnInit {
   cod_reporte;
+  cantidadreportesAyunta:any;
+  cantidadposteducacionalesAyunta:any;
+  cantidadrecompensasAyunta:any;
+  cantidadrecibosAyunta:any;
   ubicacion;
   lat;
   lng;
@@ -58,6 +63,7 @@ cod_nivel;
     public servicio2:DatosnecesarioService,
     public servicio3:RegistroReporteService,
     public LocationService:LocationService,
+    public servicio4:DatosInicioService,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public alertController: AlertController,
@@ -92,6 +98,31 @@ cod_nivel;
         console.log("Camera issue:" + err);
       });
     }
+
+    SlistaDeDatosInicioAyuntamientos(){
+      try {
+        console.log(this.cod_usuario)
+        console.log(Variableglobal.cod_usuario)
+        this.servicio4.obtenerDatosNecesarios('1').subscribe((data)=>{
+          this.datos = data;
+          this.datos
+          console.log(this.datos)
+         this.cantidadreportesAyunta = data[0].cantidadreportesAyunta
+         this.cantidadrecibosAyunta = data[0].cantidadrecibosAyunta
+         this.cantidadposteducacionalesAyunta = data[0].cantidadposteducacionalesAyunta
+         this.cantidadrecompensasAyunta = data[0].cantidadrecompensasAyunta
+        },
+        (error)=>{
+          // alert(error);
+          alert("Error: " + error.message)
+  
+        });
+      } 
+      catch (error) {
+        alert("Error: " + error.message)
+      }
+      
+    }
   
 
     //Prueba
@@ -103,7 +134,8 @@ cod_nivel;
 //pero si mando otra cosa me lo devuelve correctamente
 
 
-    async ngOnInit() {
+async ngOnInit() {
+    this.SlistaDeDatosInicioAyuntamientos()
     await this.platform.ready();
     this.onload();
     await this.loadMap();
