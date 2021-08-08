@@ -33,6 +33,7 @@ obtenerFoto(cod_reporte:number){
 
   eliminarReporte(cod_reporte:any){
     return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/EliminarReporte?cod_reporte='+cod_reporte+"");
+
   }
 
   actualizarReporte(cod_reporte:any){

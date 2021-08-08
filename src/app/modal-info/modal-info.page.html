@@ -16,59 +16,40 @@
         <div class="modal--datos">
 
             <ion-label>
-                Cod Usuario: {{cod_usuario}}
+                <span> Cod Usuario:</span> {{cod_usuario}}
             </ion-label>
 
             <ion-label>
-                cod reporte:{{cod_reporte}}
+                <span>  cod reporte:</span>{{cod_reporte}}
             </ion-label>
 
             <ion-label>
-                Cedula: {{cedula}}
+                <span>  Cedula:</span> {{cedula}}
             </ion-label>
 
             <ion-label>
-                correo: {{correo}}
+                <span>  correo: </span>{{correo}}
             </ion-label>
 
 
-            <ion-label id="telefono">{{telefono}}
+            <ion-label id="telefono">
+                <span>  Teléfono:</span>{{telefono}}
             </ion-label>
 
             <ion-label>
-                Usuario: {{usuario}}
+                <span>  Usuario: </span>{{usuario}}
             </ion-label>
         </div>
 
     </ion-list>
 
+
+    <div class="centrar-contenido">
+
+        <img style="max-height: 300px ; min-height: 200px;" src="{{imagen}}" alt="Imagen Residuos" height="" width="">
+    </div>
     <ion-button color="secondary" expand="full" (click)="salirConArgumentos()">
         Cerrar
     </ion-button>
-
-    <img style="max-height: 400px ; min-height: 200px;" src="{{imagen}}" alt="Imagen Residuos" height="" width="">
-
-
-    <br>
-
-    <br>
-
-    <div>
-        <ion-button id="{{'boton_cancelar' + i}}" color="warning" (click)="cancelarReporte();">
-            <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
-            Cancelar
-        </ion-button>
-        <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte();">
-            <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
-            Procesar
-        </ion-button>
-    </div>
-    <!-- 
-    <ion-list *ngFor="let usuario of usuarios; let i = index">
-        <ion-item>
-            {{usuario.correo_Usuario}}
-        </ion-item>
-    </ion-list> -->
-
 
 </ion-content>

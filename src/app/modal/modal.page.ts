@@ -212,7 +212,7 @@ export class ModalPage implements OnInit {
         this.currentImage = this.datos.fotos   
         
         // this.ImgAlert();
-        this.abrirModal();
+        // this.abrirModal();
       }
       else
       {
@@ -240,6 +240,8 @@ export class ModalPage implements OnInit {
      
       
       this.obtenerFoto(this.cod_reporte)
+
+       this.abrirModal();
   }
 
 
