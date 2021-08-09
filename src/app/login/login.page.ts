@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
     onload()
     {
       try {
-        this.servicio2.obtenerDatosNecesarios(this.usuario).subscribe((data)=>{
+        this.servicio2.obtenerDatosNecesariosAyunta(this.usuario).subscribe((data)=>{
           this.datos = data;
           // console.log(data)
          
@@ -92,11 +92,13 @@ export class LoginPage implements OnInit {
           {
             
             Variableglobal.cod_usuario = this.datos.cod_usuario;
-            Variableglobal.nombre_usuario = usuario;
+            Variableglobal.usuario = usuario;
             Variableglobal.correo_Usuario = this.datos.correo_Usuario;
-            Variableglobal.cedula_usuario = this.datos.cedula_usuario;
+            Variableglobal.Rnc_Usuario = this.datos.Rnc_Usuario;
             Variableglobal.telefono_Usuario = this.datos.telefono_Usuario;
             Variableglobal.clave = this.datos.clave;
+            Variableglobal.cod_ayuntamiento = this.datos.cod_ayuntamiento;
+            console.log(this.datos)
             
             this.menuCtrl.enable(true);
            

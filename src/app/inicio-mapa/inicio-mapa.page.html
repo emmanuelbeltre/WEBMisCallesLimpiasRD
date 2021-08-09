@@ -12,76 +12,40 @@
 
 <ion-content>
 
-    <div id="map_canvas" style="z-index: 1 !important; overflow: auto !important;"></div>
+    <!-- <div id="map_canvas" style="z-index: 1 !important; overflow: auto !important;"></div> -->
+  <div style="text-align: center; margin-top: 30px;">
+    <label style="font-weight: bold; font-size: large;"> BIENVENIDO A MIS CALLES LIMPIAS RD</label>
+    <img style="width: 120px;;margin:auto;display:block" src="assets/imagenes/MisCallesLimpiasRDCircle.png">
+  </div>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>{{nombreayuntamiento}}</ion-label>
+    </ion-item>
+  </ion-card>
   
-    <ion-item class="center" lines="none" button detail="false">
-      <div class="imagen-codigo">
-          <img src="assets/imagenes/trash.png" class="imagen">
-      </div>
+  <ion-card>
+    <ion-item href="#" class="ion-activated">
+      <ion-icon name="trash-outline" slot="start"></ion-icon>
+      <ion-label>Reportes: {{cantidadreportesAyunta}}</ion-label>
+    </ion-item>
   
-      <div class="reportes--datos">
-         <label style="margin-left: 5px; font-size: 12px;"> Reportes</label><br>
-         <label id="cantidadrecibo" style="margin-left: 5px; font-size: 14px;"> {{cantidadreportesAyunta}}</label>
-      </div>
+    <ion-item href="#">
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-label>Recibos: {{cantidadrecibosAyunta}}</ion-label>
+    </ion-item>
   
-      <div class="imagen-codigo" style="margin-left: 120px;">
-        <img src="assets/imagenes/cuenta.png" class="imagen">
-    </div>
+    <ion-item class="ion-activated">
+      <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+      <ion-label>Post Publicados: {{cantidadposteducacionalesAyunta}}</ion-label>
+    </ion-item>
   
-    <div class="reportes--datos">
-       <label style="margin-left: 5px; font-size: 12px;"> Recibos</label><br>
-       <label id="cantidadreportes" style="margin-left: 5px; font-size: 14px;"> {{cantidadrecibosAyunta}}</label>
-    </div>
-    
-    
-      
-  </ion-item>
-  
-    <ion-item class="center" lines="none" button detail="false">
+    <ion-item>
+      <ion-icon name="gift-outline" slot="start"></ion-icon>
+      <ion-label>Recompensas Publicadas: {{cantidadrecompensasAyunta}}</ion-label>
+    </ion-item>
+  </ion-card>
 
 
-        <div class="imagen-codigo">
-          <img src="assets/imagenes/poster.png" class="imagen">
-        </div>
-        
-        <div class="reportes--datos">
-          <label style="margin-left: 5px; font-size: 12px;"> Post</label><br>
-          <label id="cantidadrecibos"  style="margin-left: 5px; font-size: 14px;">{{cantidadposteducacionalesAyunta}}</label>
-        </div>
-        
-        <div class="imagen-codigo" style="margin-left: 144px;">
-          <img src="assets/imagenes/cajaderegalo.png" class="imagen">
-        </div>
-        
-        <div class="reportes--datos">
-          <label style="margin-left: 5px; font-size: 12px;"> Bonos</label><br>
-          <label id="reportesenespera" style="margin-left: 5px; font-size: 14px;">{{cantidadrecompensasAyunta}}</label>
-        </div>
-        
-        
-        
-      </ion-item>
-  
-  
-    <!-- <div style="padding: 15px;"> -->
-      <!-- <img src="assets/imagenes/moneda.png"> 
-      <label style="font-size: 12px; margin-left: 2px; margin-bottom: 15px;">Mis Puntos</label><br>
-        <label style="font-size: 12px; margin-bottom: 10px;"> 45 </label>       
-      </div>
-       -->
-       <!-- <div style="padding: 15px;">
-  
-         <ion-button expand="block" style="margin-top: 30PX;"  [hidden]="!isBtnCamaraVisible" (click)="takePicture()">TOMAR FOTO</ion-button>
-         <ion-button expand="block" [hidden]="!isBtnRegistroVisible" (click)="onRegistroReporte()">ENVIAR REPORTE</ion-button>
-         
-        </div>
-       -->
-      <!-- <ion-fab-button style="margin: 10px;" [hidden]="!isBtnCamaraVisible" (click)="takePicture()">
-        <ion-icon name="camera"></ion-icon>
-      </ion-fab-button> -->
-            <!-- <ion-fab-button style="margin: 10px;" >
-                <ion-icon name="checkmark"></ion-icon>
-            </ion-fab-button> -->
-  
-  
   </ion-content>

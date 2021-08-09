@@ -34,6 +34,8 @@ import { NgClass } from '@angular/common';
 export class InicioMapaPage implements OnInit {
   cod_reporte;
   cantidadreportesAyunta:any;
+  nombreayuntamiento:any;
+
   cantidadposteducacionalesAyunta:any;
   cantidadrecompensasAyunta:any;
   cantidadrecibosAyunta:any;
@@ -73,7 +75,7 @@ cod_nivel;
      private camera: Camera
  ) 
     {
-      this.usuario = Variableglobal.nombre_usuario;
+      this.usuario = Variableglobal.usuario;
       console.log(platform.height())
       this.height = platform.height(); 
     }
@@ -111,6 +113,7 @@ cod_nivel;
          this.cantidadrecibosAyunta = data[0].cantidadrecibosAyunta
          this.cantidadposteducacionalesAyunta = data[0].cantidadposteducacionalesAyunta
          this.cantidadrecompensasAyunta = data[0].cantidadrecompensasAyunta
+         this.nombreayuntamiento = data[0].nombreayuntamiento
         },
         (error)=>{
           // alert(error);

@@ -28,31 +28,28 @@ export class MiPerfilPage implements OnInit {
 
   txt_correo_Usuario: string = Variableglobal.correo_Usuario;
   txt_Telefono_Usuario: string = Variableglobal.telefono_Usuario;
-  txt_Cedula_Usuario: string = Variableglobal.cedula_usuario;
+  txt_Cedula_Usuario: string = Variableglobal.Rnc_Usuario;
   txt_contrasena: string = Variableglobal.clave;
-  lbl_usuario: string = Variableglobal.nombre_usuario;
+  lbl_usuario: string = Variableglobal.usuario;
   lbl_usuario2: string = Variableglobal.cod_usuario;
-  fotohtml: string = Variableglobal.foto_usuario;  
 
   constructor(public servicio:GuardardatosperfilService, public alertController: AlertController,private camera: Camera) { 
     this.cod_usuario = Variableglobal.cod_usuario;
-    this.nombre_usuario = Variableglobal.nombre_usuario; 
+    this.nombre_usuario = Variableglobal.usuario; 
     this.correo_Usuario = Variableglobal.correo_Usuario;
-    this.cedula_usuario = Variableglobal.cedula_usuario;
+    this.cedula_usuario = Variableglobal.Rnc_Usuario;
     this.telefono_Usuario = Variableglobal.telefono_Usuario;
     this.clave = Variableglobal.clave;
-    this.foto_usuario = Variableglobal.foto_usuario;
   }
 
 
   ngOnInit() {
     this.cod_usuario = Variableglobal.cod_usuario;
-    this.nombre_usuario = Variableglobal.nombre_usuario;
+    this.nombre_usuario = Variableglobal.usuario;
     this.correo_Usuario = Variableglobal.correo_Usuario;
-    this.cedula_usuario = Variableglobal.cedula_usuario;
+    this.cedula_usuario = Variableglobal.Rnc_Usuario;
     this.telefono_Usuario = Variableglobal.telefono_Usuario;
     this.clave = Variableglobal.clave;
-    this.foto_usuario = Variableglobal.foto_usuario;
     
     this.obtenerFotoPerfil(this.cod_usuario)
   }
