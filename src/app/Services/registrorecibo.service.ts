@@ -18,7 +18,7 @@ export class RegistroReciboService {
   MostrarRecibos(cod_ayuntamiento:any){
     // return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/consultarrecibosporid?cod_usuario="+cod_usuario+"");
 
-    return this.http.get("http://localhost:53059/api/MisCallesLimpiasRD/ConsultarRecibosEmpresas?cod_ayuntamiento="+cod_ayuntamiento+"");
+    return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarRecibosEmpresas?cod_ayuntamiento="+cod_ayuntamiento+"");
     
   }
 

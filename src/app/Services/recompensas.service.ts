@@ -14,7 +14,7 @@ export class RecompensasService {
   obtenerrecompensas(cod_ayuntamiento:any){
     // let prueba = Variableglobal.cod_ayuntamiento;
     // return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas?cod_ayuntamiento='+ cod_ayuntamiento );
-    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas?cod_ayuntamiento='+ cod_ayuntamiento );
+    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas?cod_ayuntamiento='+ cod_ayuntamiento );
   }
 
 
@@ -29,7 +29,7 @@ export class RecompensasService {
        }
 
        desactivarRecompensas(cod_recompensa: any){
-        return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/DesactivarRecompensa?cod_recompensa=' + cod_recompensa);
+        return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/DesactivarRecompensa?cod_recompensa=' + cod_recompensa);
       }
 
        agregarRecompensas( nombre:any,puntos:any,imagen:any,descripcion:any){

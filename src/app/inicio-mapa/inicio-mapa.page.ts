@@ -169,7 +169,7 @@ async ngOnInit() {
   
     onload(){
     
-      this.servicio2.obtenerDatosNecesarios(this.usuario).subscribe((data)=>{
+      this.servicio2.obtenerDatosNecesariosAyunta(this.usuario).subscribe((data)=>{
         this.datos = data;
         console.log(data)
        

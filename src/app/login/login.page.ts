@@ -60,7 +60,6 @@ export class LoginPage implements OnInit {
       try {
         this.servicio2.obtenerDatosNecesariosAyunta(this.usuario).subscribe((data)=>{
           this.datos = data;
-          // console.log(data)
          
         },
         (error)=>{
@@ -98,7 +97,7 @@ export class LoginPage implements OnInit {
             Variableglobal.telefono_Usuario = this.datos.telefono_Usuario;
             Variableglobal.clave = this.datos.clave;
             Variableglobal.cod_ayuntamiento = this.datos.cod_ayuntamiento;
-            console.log(this.datos)
+            console.log(data)
             
             this.menuCtrl.enable(true);
            

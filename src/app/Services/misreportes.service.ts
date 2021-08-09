@@ -22,7 +22,7 @@ export class MisreportesService {
     // return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api//MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas');
 
     
-    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas?cod_ayuntamiento=' + cod_ayuntamiento );
+    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadoDeReportesEmpresas?cod_ayuntamiento=' + cod_ayuntamiento );
   }
 
 

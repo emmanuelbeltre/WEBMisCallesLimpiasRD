@@ -43,7 +43,7 @@ export class AppModule {
   onload(){
     let usuario,clave, respuestas;
     usuario = this.usuario;
-    this.servicio.obtenerDatosNecesarios(usuario).subscribe((data)=>{
+    this.servicio.obtenerDatosNecesariosAyunta(usuario).subscribe((data)=>{
       this.datos = data;
     },
     (error)=>{
