@@ -59,6 +59,9 @@ export class ReportesAyuntamientosPage implements OnInit {
   // this.cod_usuario =1;
 
   this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+
+  //NO ESTÁ FUNCIONANDO LA VARIABLE GLOBAL
+  
   this.cod_ayuntamiento = 1
 
   this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
@@ -77,24 +80,28 @@ export class ReportesAyuntamientosPage implements OnInit {
   }
 
  
+  cargarDatos(i){
+    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+    this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
+    this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
+    this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
+    this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
+    
+    this.cod_usuario = ((document.getElementById('cod_usuario' + i)as HTMLIonLabelElement).textContent);
+    this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
 
+    this.currentImage =  ((document.getElementById('imagen' + i)as HTMLIonLabelElement).textContent);
+
+  }
 
 
   async cancelarReporte(i){
-    
-    // let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
-    //Obtenemos el id del código de reportes de forma dinámica
-    this.cod_reporte = ((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
-   
 
-  
-    //obtenemos el id de la unicación de forma dinámica
-    this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
-  
+    //obtenemos valores de la página
+    this.cargarDatos(i);
   
      if (confirm('¿Está seguro que desea cancelar el reporte con el código No: '+ this.cod_reporte )){
   
-      this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
       this.Mensajes = "Se ha cancelado el reporte realizado con el código No:" + this.cod_reporte ;
       this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
       .subscribe( 
@@ -115,17 +122,10 @@ export class ReportesAyuntamientosPage implements OnInit {
      }
     //  this.cargarReportes(i);
     }
-  
-  
+      
      procesarReporte(i){
         /// Obtenemos el id del código del usuario que hizo el reporte  de forma dinámica
-      this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);    
-      this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
-      this.cod_reporte =((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
-
-
-      
-
+     this.cargarDatos(i);
       console.log(this.cod_reporte);
       if (confirm('¿Está seguro que desea procesar el reporte código número: '+ this.cod_reporte)){
         
@@ -150,15 +150,7 @@ export class ReportesAyuntamientosPage implements OnInit {
         (data)=>{this.Mensajes = data;},
         (error)=>{console.log(error);}
       )
-      //Datos para modal
-      
-      // this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
-      // this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
-      // this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
-      // this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
-
-      
-      //   return this.cod_usuario,   this.usuario, this.correo, this.telefono, this.cedula,this.cargarReportes(i);
+     
        }
      else{
        alert('cancelado');
@@ -166,17 +158,6 @@ export class ReportesAyuntamientosPage implements OnInit {
      }
      this.cargarReportes(i);
      }
-
-     datosParaModal(i){
-      this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
-      this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
-      this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
-      this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
-
-      
-        return this.cod_usuario,   this.usuario, this.correo, this.telefono, this.cedula,this.cargarReportes(i);
-     }
-  
      async abrirModal(){
      
       const modal = await   this.modalCtrl.create({
@@ -200,19 +181,18 @@ export class ReportesAyuntamientosPage implements OnInit {
 
           console.log('Retorno del modal', data)
 
-
-
-
         }
+
      cargarReportes(i){
        this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento
-       this.cod_ayuntamiento = 1;
+
+       //NO ESTÁ FUNCIONANDO LA VARIABLE GLOBAL
+       this.cod_ayuntamiento = 1
       this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
       {this.reportes = data;},
         (error)=>{console.log(error);}
       )
-    }
-  
+    }  
   
   obtenerFoto(i){
     
@@ -230,37 +210,28 @@ export class ReportesAyuntamientosPage implements OnInit {
       else
       {
         alert("Hubo un error al cargar la foto")
-      }
-     
+      }     
     },
     (error)=>{
       alert("Hubo un error al cargar la foto")
     });
   }
   
+
   
   showAlert(i) {
-    
-  
-      this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
-      this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
-      this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
-      this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
-      this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
-      
-      this.cod_usuario = ((document.getElementById('cod_usuario' + i)as HTMLIonLabelElement).textContent);
+    //cargamos lod datos
+   this.cargarDatos(i);
 
-        
-         
      //obtengo la ruta de la imagen
-      this.currentImage =  ((document.getElementById('imagen' + i)as HTMLIonLabelElement).textContent).slice(1); 
-
+      this.currentImage= this.currentImage.slice(1); 
 
       //obtengo la url de la api para unirla a la ruta
       let urlApi= "http://api.miscalleslimpiasrd.tecnolora.com/";
       this.currentImage = urlApi + this.currentImage;
 
       console.log(this.currentImage)
+      console.log(this.telefono);
 
       // this.obtenerFoto(i);
 
@@ -268,11 +239,8 @@ export class ReportesAyuntamientosPage implements OnInit {
        
   }
 
-
-
   mostrarDatos(){
-
-    this.Datos.DatosUsuario(1).subscribe((data)=>
+      this.Datos.DatosUsuario(1).subscribe((data)=>
     {this.usuarios = data;},
       (error)=>{console.log(error);}
     )

@@ -163,6 +163,8 @@ async ngOnInit() {
           tilt: 30
         }
       });
+
+  
     }
   
     onload(){
