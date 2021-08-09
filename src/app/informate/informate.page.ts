@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformateService } from '../Services/informate.service';
+import { Variableglobal } from '../variableglobal';
 
 @Component({
   selector: 'app-informate',
@@ -31,6 +32,7 @@ export class InformatePage implements OnInit {
 
   ngOnInit() {
     this.cargarPost();
+    
   }
 
   cargarPost(){

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { Variableglobal } from '../variableglobal';
 
 
 @Injectable({
@@ -10,9 +11,10 @@ export class RecompensasService {
 
   constructor(public http: HttpClient) { }
 
-  obtenerrecompensas(){
-    return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas');
-    // return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas');
+  obtenerrecompensas(cod_ayuntamiento:any){
+    // let prueba = Variableglobal.cod_ayuntamiento;
+    // return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas?cod_ayuntamiento='+ cod_ayuntamiento );
+    return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadodeRecompensas?cod_ayuntamiento='+ cod_ayuntamiento );
   }
 
 

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MisreportesService } from '../Services/misreportes.service';
+
+import { ModalInfoPage } from '../modal-info/modal-info.page';
 import { AlertController } from '@ionic/angular';
 import { Variableglobal } from '../variableglobal';
 import {RegistroService} from '../Services/registro.service';
 import {MispuntosService} from '../Services/mispuntos.service'
 import {MensajeriaService} from '../Services/mensajeria.service';
 import { ModalController } from '@ionic/angular';
+
+
+import {DatosnecesarioService} from '../Services/datosnecesario.service'
 // import { ModalPage } from '../modal/modal.page';
 
 @Component({
@@ -23,45 +28,40 @@ export class ReportesAyuntamientosPage implements OnInit {
   Mensajes:any;
   public niveles:any;
   public datos:any;
+  usuarios:any;
+  cod_ayuntamiento:any;
   
+  i:any;
+  //Elementos modal
+  usuario:any;
+  correo:any;
+  cedula:any;
+  telefono:any;
 
   currentImage: any;
 
-  constructor(
+  constructor(private modalCtrl: ModalController,
     public alertController: AlertController, 
     public nivelUsuario: RegistroService,
     public servicio:MisreportesService,
     public servicioPuntos: MispuntosService,
     public Mensajeria: MensajeriaService,
-    public modalController: ModalController ) { 
-    this.cod_usuario = Variableglobal.cod_usuario;
-}
+    public modalController: ModalController,
+    public Datos: DatosnecesarioService) { }
 
-async ImgAlert() {
-  const alert = await this.alertController.create({
-    // component: ModalPage,
-    cssClass: 'my-custom-class',
-    message: `<div class="prueba6"><img src="${this.currentImage}" alt="g-maps" style="border-radius: 2px"><ion-button  color="warning" (click)="cancelarReporte(i);">
-    Cancelar
-    </ion-button>
 
-    <ion-button id="{{'boton_procesar' + i}}" color="success" (click)="procesarReporte(i);">
-    <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
-    Procesar
-</ion-button>
-    </div>`,
+ 
     
-    buttons: ['OK']
-  });
-  await alert.present();
-}
 
+  ngOnInit() {
+    this.mostrarDatos();
+    this.cod_usuario = Variableglobal.cod_usuario;
+  // this.cod_usuario =1;
 
-ngOnInit() {
-  this.cod_usuario = Variableglobal.cod_usuario;
-  this.cod_usuario =1;
+  this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+  this.cod_ayuntamiento = 1
 
-  this.servicio.obtenerMisReportesEmpresas().subscribe((data)=>
+  this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
   {this.reportes = data;},
     (error)=>{console.log(error);}
   )
@@ -72,137 +72,210 @@ ngOnInit() {
     (error)=>{console.log(error);}
   )
 
+  
 
-
-}
-
- async cancelarReporte(i){
-    
-  // let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
-  //Obtenemos el id del código de reportes de forma dinámica
-  this.cod_reporte = ((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
-
-  //obtenemos el id de la unicación de forma dinámica
-  this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
-
-
-   if (confirm('¿Está seguro que desea cancelar el reporte con el código No: '+ this.cod_reporte )){
-
-    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
-    this.Mensajes = "Se ha cancelado el reporte realizado con el código No:" + this.cod_reporte ;
-    this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
-    .subscribe( 
-      (data)=>{this.Mensajes = data;},
-      (error)=>{console.log(error);}
-    )
-    this.servicio.eliminarReporte(this.cod_reporte).subscribe((data)=>
-    {this.reportes = data;},
-      (error)=>{console.log(error);}
-    )
-    alert('Cancelación Exitosa');
-
-  this.cargarReportes();
-   }
-
-   else {
-     alert('Proceso Detenido');
-   }
   }
 
-
-   procesarReporte(i){
-      /// Obtenemos el id del código del usuario que hizo el reporte  de forma dinámica
-    this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);
-
-  
-    this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
-    this.cod_reporte =((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
-    console.log(this.cod_reporte);
-    if (confirm('¿Está seguro que desea procesar el reporte código número: '+ this.cod_reporte)){
-      
-      this.puntos_reporte = 10;   
-      this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
-      .subscribe(
-        (data)=>{this.reportes = data;},
-        (error)=>{console.log(error);}
-      )
-
-      this.servicio.actualizarReporte(this.cod_reporte) .subscribe(
-        (data)=>{this.reportes = data;},
-        (error)=>{console.log(error);}
-      )
-  
-    this.cargarReportes();
-    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
-      this.Mensajes = ('Se ha aprovado su reporte con el código No:' + this.cod_reporte);
-
-    this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
-    .subscribe( 
-      (data)=>{this.Mensajes = data;},
-      (error)=>{console.log(error);}
-    )
-        this.cargarReportes();
-     }
-   else{
-     alert('cancelado');
-     return;
-   }
-   this.cargarReportes();
-   }
-
-  
+ 
 
 
-  // procesarReporte(i){
 
-  //   this.puntos_reporte = 10;
-
-  //   this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);
-  
-  //   this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
-  //   .subscribe(
-  //     (data)=>{this.reportes = data;},
-  //     (error)=>{console.log(error);}
-  //   )
+  async cancelarReporte(i){
     
-  // }
-
-
-
-  cargarReportes(){
-    this.servicio.obtenerMisReportesEmpresas().subscribe((data)=>
-    {this.reportes = data;},
-      (error)=>{console.log(error);}
-    )
-  }
-
-
-obtenerFoto(cod_reporte){
-  this.servicio.obtenerFoto(cod_reporte).subscribe((data)=>{
-    this.datos = data;
-    if (this.datos.respuesta == "OK")
-    {
-      this.datos = data
-      this.currentImage = this.datos.fotos
-      this.ImgAlert();
-    }
-    else
-    {
-      alert("Hubo un error al cargar la foto")
-    }
+    // let botonId = ((document.getElementById('boton_cancelar'+i) as HTMLIonButtonElement).id);
+    //Obtenemos el id del código de reportes de forma dinámica
+    this.cod_reporte = ((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
    
-  },
-  (error)=>{
-    alert("Hubo un error al cargar la foto")
-  });
-}
 
-
-showAlert(i) {
   
+    //obtenemos el id de la unicación de forma dinámica
+    this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
+  
+  
+     if (confirm('¿Está seguro que desea cancelar el reporte con el código No: '+ this.cod_reporte )){
+  
+      this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+      this.Mensajes = "Se ha cancelado el reporte realizado con el código No:" + this.cod_reporte ;
+      this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
+      .subscribe( 
+        (data)=>{this.Mensajes = data;},
+        (error)=>{console.log(error);}
+      )
+      
+      this.servicio.eliminarReporte(this.cod_reporte).subscribe((data)=>
+      {this.reportes = data;},
+        (error)=>{console.log(error);}
+      )
+      alert('Cancelación Exitosa');
+      return  this.cod_reporte, this.cargarReportes(i);
+     }
+  
+     else {
+       alert('Proceso Detenido');
+     }
+    //  this.cargarReportes(i);
+    }
+  
+  
+     procesarReporte(i){
+        /// Obtenemos el id del código del usuario que hizo el reporte  de forma dinámica
+      this.cod_usuario =((document.getElementById('cod_usuario' + i) as HTMLIonLabelElement).textContent);    
+      this.ubicacion =((document.getElementById('ubicacion' +i) as HTMLIonLabelElement).textContent);
+      this.cod_reporte =((document.getElementById('cod_reporte' +i) as HTMLIonLabelElement).textContent);
 
-this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
 
-this.obtenerFoto(this.cod_reporte)
-}
-}
+      
+
+      console.log(this.cod_reporte);
+      if (confirm('¿Está seguro que desea procesar el reporte código número: '+ this.cod_reporte)){
+        
+        this.puntos_reporte = 10;   
+        this.servicioPuntos.ProcesarOrden(this.cod_usuario, this.puntos_reporte)
+        .subscribe(
+          (data)=>{this.reportes = data;},
+          (error)=>{console.log(error);}
+        )
+  
+        this.servicio.actualizarReporte(this.cod_reporte) .subscribe(
+          (data)=>{this.reportes = data;},
+          (error)=>{console.log(error);}
+        )
+    
+      this.cargarReportes(i);
+      this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+        this.Mensajes = ('Se ha aprovado su reporte con el código No:' + this.cod_reporte);
+  
+      this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
+      .subscribe( 
+        (data)=>{this.Mensajes = data;},
+        (error)=>{console.log(error);}
+      )
+      //Datos para modal
+      
+      // this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
+      // this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
+      // this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
+      // this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
+
+      
+      //   return this.cod_usuario,   this.usuario, this.correo, this.telefono, this.cedula,this.cargarReportes(i);
+       }
+     else{
+       alert('cancelado');
+       return;
+     }
+     this.cargarReportes(i);
+     }
+
+     datosParaModal(i){
+      this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
+      this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
+      this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
+      this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
+
+      
+        return this.cod_usuario,   this.usuario, this.correo, this.telefono, this.cedula,this.cargarReportes(i);
+     }
+  
+     async abrirModal(){
+     
+      const modal = await   this.modalCtrl.create({
+            component: ModalInfoPage,
+            
+            componentProps:{
+              'usuario' : this.usuario,
+              'cod_usuario' : this.cod_usuario,
+              'cod_reporte' : this.cod_reporte,
+              'cedula' : this.cedula,
+              'telefono' : this.telefono,
+              'correo' : this.correo,
+              'imagen' : this.currentImage
+            }
+          });
+
+          await modal.present();  
+
+          //con este traigo información del modal info a la pantalla actual
+          const {data} = await modal.onDidDismiss();
+
+          console.log('Retorno del modal', data)
+
+
+
+
+        }
+     cargarReportes(i){
+       this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento
+       this.cod_ayuntamiento = 1;
+      this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
+      {this.reportes = data;},
+        (error)=>{console.log(error);}
+      )
+    }
+  
+  
+  obtenerFoto(i){
+    
+    this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+    this.servicio.obtenerFoto(this.cod_reporte).subscribe((data)=>{
+      this.datos = data;
+      if (this.datos.respuesta == "OK")
+      {
+        this.datos = data
+        this.currentImage = this.datos.fotos   
+        
+        // this.ImgAlert();
+        // this.abrirModal();
+      }
+      else
+      {
+        alert("Hubo un error al cargar la foto")
+      }
+     
+    },
+    (error)=>{
+      alert("Hubo un error al cargar la foto")
+    });
+  }
+  
+  
+  showAlert(i) {
+    
+  
+      this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
+      this.usuario = ((document.getElementById('usuario' + i) as HTMLIonLabelElement).textContent);
+      this.correo = ((document.getElementById('correo' + i)as HTMLIonLabelElement).textContent);
+      this.cedula = ((document.getElementById('cedula' + i)as HTMLIonLabelElement).textContent);
+      this.telefono = ((document.getElementById('telefono' + i)as HTMLIonLabelElement).textContent);
+      
+      this.cod_usuario = ((document.getElementById('cod_usuario' + i)as HTMLIonLabelElement).textContent);
+
+        
+         
+     //obtengo la ruta de la imagen
+      this.currentImage =  ((document.getElementById('imagen' + i)as HTMLIonLabelElement).textContent).slice(1); 
+
+
+      //obtengo la url de la api para unirla a la ruta
+      let urlApi= "http://api.miscalleslimpiasrd.tecnolora.com/";
+      this.currentImage = urlApi + this.currentImage;
+
+      console.log(this.currentImage)
+
+      // this.obtenerFoto(i);
+
+       this.abrirModal();
+       
+  }
+
+
+
+  mostrarDatos(){
+
+    this.Datos.DatosUsuario(1).subscribe((data)=>
+    {this.usuarios = data;},
+      (error)=>{console.log(error);}
+    )
+    
+  }
+  }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { Variableglobal } from '../variableglobal';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class RegistroReciboService {
     
   }
 
-  MostrarRecibos(cod_usuario:any){
-    return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/consultarrecibosporid?cod_usuario="+cod_usuario+"");
+  MostrarRecibos(cod_ayuntamiento:any){
+    // return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/consultarrecibosporid?cod_usuario="+cod_usuario+"");
+
+    return this.http.get("http://localhost:53059/api/MisCallesLimpiasRD/ConsultarRecibosEmpresas?cod_ayuntamiento="+cod_ayuntamiento+"");
     
   }
 

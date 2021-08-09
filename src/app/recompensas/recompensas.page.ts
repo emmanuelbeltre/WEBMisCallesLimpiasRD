@@ -7,6 +7,7 @@ import {RegistroReciboService} from '../Services/registrorecibo.service';
 import { MispuntosService } from '../Services/mispuntos.service';
 import { Variableglobal } from '../variableglobal';
 import { Router } from "@angular/router"; 
+import { variable } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RecompensasPage implements OnInit {
   // cod_usuario:any;
   public datos:any;
   subscription: Subscription;
+  cod_ayuntamiento: any;
 
   buttonDisabled:any;
   constructor(
@@ -36,8 +38,11 @@ export class RecompensasPage implements OnInit {
   misPuntos:any;
   
   ngOnInit() {
+console.log('hola?')
+this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+console.log(this.cod_ayuntamiento)
 
-    this.servicio.obtenerrecompensas().subscribe((data)=>{
+    this.servicio.obtenerrecompensas(this.cod_ayuntamiento).subscribe((data)=>{
       this.recompensas = data;},
       (error)=>{console.log(error);}
     )
@@ -71,7 +76,7 @@ export class RecompensasPage implements OnInit {
   //obtener recompensas
 
   CargarRecompensas(){
-    this.servicio.obtenerrecompensas().subscribe((data)=>{
+    this.servicio.obtenerrecompensas(Variableglobal.cod_ayuntamiento).subscribe((data)=>{
       this.recompensas = data;},
       (error)=>{console.log(error);}
     )

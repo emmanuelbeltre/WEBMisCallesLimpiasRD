@@ -11,6 +11,7 @@ import {MensajeriaService} from '../Services/mensajeria.service';
 
 import {DatosnecesarioService} from '../Services/datosnecesario.service'
 
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.page.html',
@@ -33,6 +34,7 @@ export class ModalPage implements OnInit {
   correo:any;
   cedula:any;
   telefono:any;
+  cod_ayuntamiento:any
 
   currentImage: any;
 
@@ -54,7 +56,8 @@ export class ModalPage implements OnInit {
     this.cod_usuario = Variableglobal.cod_usuario;
   // this.cod_usuario =1;
 
-  this.servicio.obtenerMisReportesEmpresas().subscribe((data)=>
+  this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento
+  this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
   {this.reportes = data;},
     (error)=>{console.log(error);}
   )
@@ -196,7 +199,8 @@ export class ModalPage implements OnInit {
 
         }
      cargarReportes(i){
-      this.servicio.obtenerMisReportesEmpresas().subscribe((data)=>
+      this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento
+      this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
       {this.reportes = data;},
         (error)=>{console.log(error);}
       )

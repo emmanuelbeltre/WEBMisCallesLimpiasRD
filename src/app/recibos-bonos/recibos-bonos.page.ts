@@ -24,6 +24,7 @@ export class RecibosBonosPage implements OnInit {
   cedula_usuario:any;
   cod_usuarioreporte:any;
   telefono_Usuario:any;
+  cod_ayuntamiento:any;
 
 
 
@@ -59,21 +60,17 @@ export class RecibosBonosPage implements OnInit {
       }
     });
 
-    this.cod_usuario = Variableglobal.cod_usuario; 
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;  
     
     
 
-    this.servicio.MostrarRecibos(this.cod_usuario)
+    this.servicio.MostrarRecibos(this.cod_ayuntamiento)
     .subscribe(
       (data)=>{this.Recibos = data;},
       (error)=>{console.log(error);}
-    ),
+    )
   
-      this.servicio2.obtenerMisPuntos(this.cod_usuario)
-      .subscribe(
-        (data)=>{this.misPuntos = data;},
-        (error)=>{console.log(error);}
-      )
+      
 
     return await modal.present();
   }
@@ -82,19 +79,16 @@ export class RecibosBonosPage implements OnInit {
 
 
   ngOnInit() {
-    this.cod_usuario = Variableglobal.cod_usuario; 
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento; 
+    console.log('HHHHHHHHHHHHHH0', this.cod_ayuntamiento)
 
-   this.servicio.MostrarRecibos(this.cod_usuario)
+   this.servicio.MostrarRecibos(this.cod_ayuntamiento)
    .subscribe(
      (data)=>{this.Recibos = data;},
      (error)=>{console.log(error);}
-   ),
+   )
  
-     this.servicio2.obtenerMisPuntos(this.cod_usuario)
-     .subscribe(
-       (data)=>{this.misPuntos = data;},
-       (error)=>{console.log(error);}
-     )
+    
  }
 
   showAlert(i) {

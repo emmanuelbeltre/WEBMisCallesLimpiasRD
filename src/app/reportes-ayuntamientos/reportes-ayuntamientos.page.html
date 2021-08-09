@@ -8,8 +8,11 @@
 </ion-header>
 
 
-<ion-content class="contenedor--reportes">
 
+<ion-content class="contenedor--reportes">
+    <!-- <ion-button expand="full" (click)="abrirModal()">
+        Abrir Modal
+    </ion-button> -->
     <!-- <img  [src]="currentImage" *ngIf="currentImage"> -->
     <ion-item class="reportes-header">
         <ion-label>
@@ -23,7 +26,7 @@
             ---
         </ion-label>
     </ion-item>
-    <ion-button id="{{'cargar'}}" color="success" (click)="cargarReportes();">
+    <ion-button id="{{'cargar'}}" color="success" (click)="cargarReportes(i);">
         <ion-icon name="arrow-down-outline" slot="start"></ion-icon>
         Cargar
     </ion-button>
@@ -33,6 +36,7 @@
             <div class="">
                 <img src="assets/imagenes/basura.png" class="imagen">
                 <ion-label class="reportes--datos__codigo" id="{{'cod_reporte' + i}}"> {{reporte.cod_reporte}} </ion-label>
+
             </div>
 
             <div class="reportes--datos" (click)="showAlert(i)">
@@ -51,6 +55,7 @@
 
                 <ion-label class="cod_usuario" id="{{'cod_usuario' + i}}"> {{reporte.cod_usuario}} </ion-label>
 
+
             </div>
 
             <div>
@@ -62,12 +67,24 @@
                     <!-- <ion-icon name="wallet" slot="start"></ion-icon> -->
                     Procesar
                 </ion-button>
+
             </div>
         </ion-item>
+
+        <ion-label id="{{'imagen' + i}}" class="ocultar"> {{reporte.fotos}} </ion-label>
+        <ion-label id="{{'usuario' + i}}" class="ocultar"> {{reporte.usuario}} </ion-label>
+        <ion-label id="{{'correo' + i}}" class="ocultar"> {{reporte.correo_Usuario}} </ion-label>
+        <ion-label id="{{'cedula' + i}}" class="ocultar"> {{reporte.cedula_usuario}} </ion-label>
+        <ion-label id="{{'telefono' + i}}" class="ocultar"> {{reporte.telefono_Usuario}} </ion-label>
 
     </ion-list>
 
 
+    <!-- <ion-list *ngFor="let usuario of usuarios; let i = index">
+        <ion-item>
+            {{usuario.correo_Usuario}}
+        </ion-item>
+    </ion-list> -->
 
 
 </ion-content>
