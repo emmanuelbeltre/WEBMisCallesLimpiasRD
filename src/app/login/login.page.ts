@@ -97,7 +97,7 @@ export class LoginPage implements OnInit {
             Variableglobal.telefono_Usuario = this.datos.telefono_Usuario;
             Variableglobal.clave = this.datos.clave;
             Variableglobal.cod_ayuntamiento = this.datos.cod_ayuntamiento;
-            console.log(data)
+            console.log(this.datos.cod_ayuntamiento)
             
             this.menuCtrl.enable(true);
            

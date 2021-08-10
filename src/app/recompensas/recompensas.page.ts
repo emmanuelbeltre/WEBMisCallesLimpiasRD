@@ -38,14 +38,14 @@ export class RecompensasPage implements OnInit {
   misPuntos:any;
   
   ngOnInit() {
-console.log('hola?')
-this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
-console.log(this.cod_ayuntamiento)
+    console.log("CODIGOOO AYUNTA: " + Variableglobal.cod_ayuntamiento)
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
 
     this.servicio.obtenerrecompensas(this.cod_ayuntamiento).subscribe((data)=>{
       this.recompensas = data;},
       (error)=>{console.log(error);}
-    )
+
+
     // this.cod_usuario = Variableglobal.cod_usuario;
  
 
@@ -68,7 +68,7 @@ console.log(this.cod_ayuntamiento)
     //   (data)=>{this.recompensas = data;}, 
     //   (error)=>{console.log(error);}
     // )   
-    
+    )
 
     
   }
