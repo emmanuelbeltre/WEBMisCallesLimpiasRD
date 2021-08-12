@@ -12,11 +12,11 @@
             <div class="login--inputs">
 
                 <ion-item>
-                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="Usuario" maxlength="50" [(ngModel)]="usuario"></ion-input>
+                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="USUARIO" maxlength="50" [(ngModel)]="usuario"></ion-input>
                 </ion-item>
                 <!-- Prueba -->
                 <ion-item>
-                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="Contraseña" [type]="getType()" [(ngModel)]="clave"></ion-input>
+                    <ion-input oninput="this.value = this.value.toUpperCase()" placeholder="CONTRASEÑA" [type]="getType()" [(ngModel)]="clave"></ion-input>
                     <ion-icon style="align-items: flex-end;" name="eye" (click)="toggleTextPassword()"></ion-icon>
                 </ion-item>
 

@@ -18,7 +18,7 @@ export class AppComponent {
     { title: 'Recompensas', url: '/recompensas', icon: 'receipt' },
     { title: 'Bonos', url: '/recibos-bonos', icon: 'receipt' },
     { title: 'Informate', url: '/informate', icon: 'book' },
-    { title: 'Acerca de', url: '/sobre-nosotros', icon: 'reader' },
+    { title: 'Sobre Nosotros', url: '/sobre-nosotros', icon: 'reader' },
     // { title: 'Perfil de la Empresa', url: '/mi-perfil', icon: 'people' },
     
 
