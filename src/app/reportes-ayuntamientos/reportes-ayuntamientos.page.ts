@@ -62,7 +62,6 @@ export class ReportesAyuntamientosPage implements OnInit {
 
   //NO ESTÁ FUNCIONANDO LA VARIABLE GLOBAL
   
-  this.cod_ayuntamiento = 1
 
   this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
   {this.reportes = data;},
@@ -143,7 +142,7 @@ export class ReportesAyuntamientosPage implements OnInit {
     
       this.cargarReportes(i);
       this.cod_reporte=((document.getElementById('cod_reporte' + i) as HTMLIonLabelElement).textContent);
-        this.Mensajes = ('Se ha aprovado su reporte con el código No:' + this.cod_reporte);
+        this.Mensajes = ('Se ha aprobado su reporte con el código No:' + this.cod_reporte);
   
       this.Mensajeria.RegistrarMensajes(this.cod_usuario, this.Mensajes )
       .subscribe( 
@@ -187,7 +186,6 @@ export class ReportesAyuntamientosPage implements OnInit {
        this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento
 
        //NO ESTÁ FUNCIONANDO LA VARIABLE GLOBAL
-       this.cod_ayuntamiento = 1
       this.servicio.obtenerMisReportesEmpresas(this.cod_ayuntamiento).subscribe((data)=>
       {this.reportes = data;},
         (error)=>{console.log(error);}

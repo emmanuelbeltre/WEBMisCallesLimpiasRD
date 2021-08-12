@@ -24,7 +24,7 @@ export class RecibosBonosPage implements OnInit {
   cedula_usuario:any;
   cod_usuarioreporte:any;
   telefono_Usuario:any;
-  cod_ayuntamiento:any;
+  cod_ayuntamiento: Variableglobal;
 
 
 
@@ -75,22 +75,40 @@ export class RecibosBonosPage implements OnInit {
     return await modal.present();
   }
 
+    cargarVariableGlobal(){
+      this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento; 
+    }
 
-
+    cargarRecibos(){
+      this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento; 
+      this.servicio.MostrarRecibos(this.cod_ayuntamiento)
+      .subscribe(
+        (data)=>{this.Recibos = data;},
+        (error)=>{console.log(error);}
+      )
+    }
+    autoClick(){
+   
+      document.getElementById('prueba').click();
+      document.getElementById('prueba').click();
+      document.getElementById('prueba').click();
+     }
+     crgarRecibos(){
+      
+      this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento; 
+      this.cargarRecibos();
+    }
 
   ngOnInit() {
-    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento; 
-    console.log('HHHHHHHHHHHHHH0', this.cod_ayuntamiento)
 
-   this.servicio.MostrarRecibos(this.cod_ayuntamiento)
-   .subscribe(
-     (data)=>{this.Recibos = data;},
-     (error)=>{console.log(error);}
-   )
+    this.cargarVariableGlobal();
+    this.autoClick();
+
+ 
+
  
     
  }
-
   showAlert(i) {
     this.nombreproducto=((document.getElementById('nombreproducto' + i) as HTMLIonLabelElement).textContent);
     this.cod_bono=((document.getElementById('cod_bono' + i) as HTMLIonLabelElement).textContent);

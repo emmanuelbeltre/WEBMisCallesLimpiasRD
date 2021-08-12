@@ -10,16 +10,19 @@ export class InformateService {
 
   constructor(public http: HttpClient) { }
   
-  obtenerPostEducacionales(){
-          return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodePost');
+  obtenerPostEducacionales(cod_ayuntamiento:any){
+    
+    // return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/ConsultarListadodePost?cod_ayuntamiento='+ cod_ayuntamiento);
+          return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodePost?cod_ayuntamiento='+ cod_ayuntamiento);
         }
 
       //   return this.http.get("https://localhost:44371/api/MisCallesLimpiasRD/ConsultarListadodePost");
       // }
 
 
-      RegistrarPost(titulo:any,  descripcion:any,  imagen:any){
-        return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/AgregarPostEducacional?titulo='+titulo+'&descripcion='+descripcion+'&imagen='+imagen );
+      RegistrarPost(titulo:any,  descripcion:any,  imagen:any, cod_ayuntamiento:any){
+        // return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/AgregarPostEducacional?titulo='+titulo+'&descripcion='+descripcion+'&imagen='+imagen+'&cod_ayuntamiento='+cod_ayuntamiento );
+        return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/AgregarPostEducacional?titulo='+titulo+'&descripcion='+descripcion+'&imagen='+imagen+'&cod_ayuntamiento='+cod_ayuntamiento );
       }
 
       EliminarPost(cod_post: any){

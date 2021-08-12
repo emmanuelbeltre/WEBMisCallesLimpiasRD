@@ -30,7 +30,7 @@ export class AppComponent {
   codigo:any;
 
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(platform: Platform,public servicio2:DatosnecesarioService){
+  constructor(platform: Platform,public servicio2:DatosnecesarioService, public router: Router){
     platform.ready().then(() => {
       // this.onVerificarPantalla() ;
         if (document.URL.startsWith('http')){
@@ -41,6 +41,21 @@ export class AppComponent {
         }
     });
    }
+
+   PruebaClick(){
+      
+    Variableglobal.cod_ayuntamiento=null;
+    Variableglobal.cod_usuario=null;
+  
+    Variableglobal.cod_nivel=null;
+    
+    this.router.navigate(['/login'])
+    .then(() => {
+      window.location.reload();
+    });
+
+    console.log(Variableglobal.cod_ayuntamiento)
+  }
 
   //  onVerificarPantalla() {
   //    this.codigo = Variableglobal.cod_nivel;

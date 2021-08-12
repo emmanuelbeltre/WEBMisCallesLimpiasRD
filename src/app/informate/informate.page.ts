@@ -9,6 +9,7 @@ import { Variableglobal } from '../variableglobal';
 })
 export class InformatePage implements OnInit {
   posteducacionales;
+  cod_ayuntamiento: any;
   //datos a obtener
   cod_post:any;
   titulo:any;
@@ -30,13 +31,22 @@ export class InformatePage implements OnInit {
 
   constructor(public servicio:InformateService) { }
 
+  cargarcodAyuntamiento(i){
+    
+    }
+
   ngOnInit() {
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+  
     this.cargarPost();
+    console.log('FFFF',this.cod_ayuntamiento);
     
   }
 
   cargarPost(){
-    this.servicio.obtenerPostEducacionales()
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+
+    this.servicio.obtenerPostEducacionales(this.cod_ayuntamiento)
     .subscribe(
       (data)=>{this.posteducacionales = data;},
       (error)=>{console.log(error);}
@@ -70,6 +80,7 @@ export class InformatePage implements OnInit {
 
 
   llenarDatos(i){
+    this.ngOnInit();
     // Obtenemos los datos de cada elemento seleccionado
     this.cod_post =(document.getElementById('cod_post' + i) as HTMLIonLabelElement).textContent;
 
@@ -87,19 +98,24 @@ export class InformatePage implements OnInit {
     this.titulo_agregar = (document.getElementById('titulo_agregar')as HTMLTextAreaElement).value;
     this.descripcion_agregar = (document.getElementById('descripcion_agregar')as HTMLTextAreaElement).value;  
     this.imagen_agregar = (document.getElementById('imagen_agregar')as HTMLTextAreaElement).value;
+    this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
 
     if ((this.titulo_agregar || this.descripcion_agregar || this.imagen_agregar) ==""){
       alert('Llene cada elemento antes de proseguir.');
       return;
     }
     else{
-      this.servicio.RegistrarPost( this.titulo_agregar, this.descripcion_agregar, this.imagen_agregar)
+      this.servicio.RegistrarPost( this.titulo_agregar, this.descripcion_agregar, this.imagen_agregar, this.cod_ayuntamiento)
     .subscribe(
       (data)=>{this.posteducacionales = data;},
       (error)=>{console.log(error);}
     )
+    
     }
     alert('Registro Exitoso');
+    this.cargarPost();
+      this.mostrarSeccion();
+      this.vaciarElementos();
 
   }
 
@@ -146,16 +162,21 @@ export class InformatePage implements OnInit {
         (data)=>{this.posteducacionales = data;},
         (error)=>{console.log(error);}
       )
+      this.cargarPost();
       alert('Eliminación Exitosa');
-      document.getElementById("cargar").click();
-      this.ocultarSeccion();
+      // document.getElementById("cargar").click();
+      // this.ocultarSeccion();
+
+      this.mostrarSeccion();
+      this.vaciarElementos();
+      
         
     } else { 
         // window.alert('Intenelo más tarde');
         return;
     }
+    this.mostrarSeccion();
     this.vaciarElementos();
-    this.ocultarSeccion();
   }
 
 

@@ -60,6 +60,7 @@ cod_nivel;
   value:any;
   latitude: any = '0';
   longitud: any = '0';
+  cod_ayuntamiento:any
   constructor( 
     // private base64: Base64,
     public servicio2:DatosnecesarioService,
@@ -76,8 +77,12 @@ cod_nivel;
  ) 
     {
       this.usuario = Variableglobal.usuario;
+
       console.log(platform.height())
       this.height = platform.height(); 
+      this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+
+      console.log('FFFFFFFFFFFFFFFF', this.cod_ayuntamiento);
     }
 
     takePicture() {
@@ -138,6 +143,7 @@ cod_nivel;
 
 
 async ngOnInit() {
+  console.log('GGGGGGGGGGGGGGG0',this.cod_ayuntamiento);  
     this.SlistaDeDatosInicioAyuntamientos()
     await this.platform.ready();
     this.onload();
@@ -163,6 +169,9 @@ async ngOnInit() {
           tilt: 30
         }
       });
+
+    
+
 
   
     }

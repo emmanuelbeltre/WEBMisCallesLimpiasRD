@@ -253,6 +253,8 @@ export class RecompensasPage implements OnInit {
         this.imagenUrlAgregar = (document.getElementById('imagenUrlAgregar')as HTMLTextAreaElement).value;
         this.descripcionAgregar = (document.getElementById('descripcionAgregar')as HTMLTextAreaElement).value;
 
+        this.cod_ayuntamiento = Variableglobal.cod_ayuntamiento;
+
         //confirmar si hay campos vacíos
 
         if (this.nombre_recompensaAgregar =="" || this.puntosAgregar =="" || this.imagenUrlAgregar=="" || this.descripcionAgregar==""){
@@ -260,7 +262,7 @@ export class RecompensasPage implements OnInit {
         }
         else{
           
-          this.servicio.agregarRecompensas( this.nombre_recompensaAgregar, this.puntosAgregar, this.imagenUrlAgregar, this.descripcionAgregar)
+          this.servicio.agregarRecompensas( this.nombre_recompensaAgregar, this.puntosAgregar, this.imagenUrlAgregar, this.descripcionAgregar, this.cod_ayuntamiento)
           .subscribe(
             (data)=>{this.recompensas = data;},
             (error)=>{console.log(error);}

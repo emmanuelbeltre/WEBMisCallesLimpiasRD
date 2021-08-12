@@ -32,8 +32,9 @@ export class RecompensasService {
         return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/DesactivarRecompensa?cod_recompensa=' + cod_recompensa);
       }
 
-       agregarRecompensas( nombre:any,puntos:any,imagen:any,descripcion:any){
-        return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/AgregarRecompensa?nombre='+nombre+'&puntos='+ puntos+'&imagen='+imagen+'&descripcion=' + descripcion );
+       agregarRecompensas( nombre:any,puntos:any,imagen:any,descripcion:any, cod_ayuntamiento:any){
+        //return this.http.get('http://localhost:53059/api/MisCallesLimpiasRD/AgregarRecompensa?nombre='+nombre+'&puntos='+ puntos+'&imagen='+imagen+'&descripcion=' + descripcion +'&cod_ayuntamiento=' + cod_ayuntamiento );
+        return this.http.get('http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/AgregarRecompensa?nombre='+nombre+'&puntos='+ puntos+'&imagen='+imagen+'&descripcion=' + descripcion +'&cod_ayuntamiento=' + cod_ayuntamiento );
       }
 
 
