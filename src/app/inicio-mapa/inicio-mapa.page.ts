@@ -110,7 +110,8 @@ cod_nivel;
       try {
         console.log(this.cod_usuario)
         console.log(Variableglobal.cod_usuario)
-        this.servicio4.obtenerDatosNecesarios('1').subscribe((data)=>{
+        console.log(Variableglobal.cod_ayuntamiento)
+        this.servicio4.ConsultarListadodeDatosInicioAyuntamiento(Variableglobal.cod_ayuntamiento).subscribe((data)=>{
           this.datos = data;
           this.datos
           console.log(this.datos)
@@ -119,6 +120,7 @@ cod_nivel;
          this.cantidadposteducacionalesAyunta = data[0].cantidadposteducacionalesAyunta
          this.cantidadrecompensasAyunta = data[0].cantidadrecompensasAyunta
          this.nombreayuntamiento = data[0].nombreayuntamiento
+         console.log(this.nombreayuntamiento)
         },
         (error)=>{
           // alert(error);
@@ -147,8 +149,8 @@ async ngOnInit() {
     this.SlistaDeDatosInicioAyuntamientos()
     await this.platform.ready();
     this.onload();
-    await this.loadMap();
-    await this.localizar()
+    // await this.loadMap();
+    // await this.localizar()
     }
 
     loadMap() {

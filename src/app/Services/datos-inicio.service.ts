@@ -11,7 +11,7 @@ export class DatosInicioService {
 
   constructor(public http: HttpClient) { }
 
-  obtenerDatosNecesarios(cod_usuario:string){
-    return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeDatosInicioAyuntamiento?cod_ayuntamiento="+1+"");
+  ConsultarListadodeDatosInicioAyuntamiento(cod_ayuntamiento:string){
+    return this.http.get("http://api.miscalleslimpiasrd.tecnolora.com/api/MisCallesLimpiasRD/ConsultarListadodeDatosInicioAyuntamiento?cod_ayuntamiento="+cod_ayuntamiento+"");
     }
 }
