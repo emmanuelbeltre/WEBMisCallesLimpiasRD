@@ -98,8 +98,8 @@
       "com-badrit-base64": {}
     },
     "platforms": [
-      "browser",
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

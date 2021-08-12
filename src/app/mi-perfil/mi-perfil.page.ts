@@ -24,7 +24,7 @@ export class MiPerfilPage implements OnInit {
   fotoenhtml: any;
   splitted: any;
   currentImage2: any;
-
+  fotohtml: any;
 
   txt_correo_Usuario: string = Variableglobal.correo_Usuario;
   txt_Telefono_Usuario: string = Variableglobal.telefono_Usuario;

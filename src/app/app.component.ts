@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Environment } from '@ionic-native/google-maps';
+import { Location } from '@angular/common';
+
 import { Platform } from '@ionic/angular';
 import { DatosnecesarioService } from './Services/datosnecesario.service';
 import { Router } from "@angular/router"; 
@@ -30,7 +32,7 @@ export class AppComponent {
   codigo:any;
 
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(platform: Platform,public servicio2:DatosnecesarioService, public router: Router){
+  constructor(platform: Platform,public servicio2:DatosnecesarioService, public router: Router, public location: Location){
     platform.ready().then(() => {
       // this.onVerificarPantalla() ;
         if (document.URL.startsWith('http')){
@@ -46,15 +48,15 @@ export class AppComponent {
       
     Variableglobal.cod_ayuntamiento=null;
     Variableglobal.cod_usuario=null;
-  
     Variableglobal.cod_nivel=null;
-    
-    this.router.navigate(['/login'])
+    this.router.navigate['../login']
     .then(() => {
       window.location.reload();
-    });
+      this.router.navigate['../login']
 
-    console.log(Variableglobal.cod_ayuntamiento)
+    });
+    this.router.navigate['../login']
+
   }
 
   //  onVerificarPantalla() {
